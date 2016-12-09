@@ -1,0 +1,78 @@
+
+
+The Extended Projection Principle (EPP) in its original 1981 formulation (\textit{Clauses must have subjects}) was and remains largely mysterious.  It is fairly well established by now that there appears to be something special about T or the [Spec T] position.  Equally, when a larger set of cases is taken into account, it also appears incorrect to maintain the original formulation in terms of grammatical function.  
+
+Null subject languages like Greek, which allow freely V-initial orders pose a particular challenge for the theory of the EPP property of T/I.  If we assume that a \textit{pro} element uniformly occupies the [Spec T] position we have a solution at one level but equally we seem to miss generalisations such as those that \citet{alexiadou-anagnostopoulou:98}  have established regarding the possibility of satisfying the EPP via Verb movement.  
+Assuming, in turn, that V-movement is, again uniformly, capable of satisfying the EPP property of T, leaves us with the conclusion that any subject overt or not must live in a higher position, like a Topic position.  This has been suggested in various places for Greek over the last several years (see \citet{philippaki:85}, \citet{tsimpli:90}, \citet{alexiadou-anagnostopoulou:98}, among many others).  However, the issue with this suggestion is that it is more often than not in fact undecidable.  Given the ease with which subjects are interpreted as topics, i.e. that the main predication of the sentence is \textit{about} the subject, then the idea that, in the case of Greek, at least subjects are always in a [Spec Top] position that is string-indistinguisahble from the normal position at [Spec T] becomes less attractive and perhaps less warranted as a general solution.   Moreover, the existence of \textit{pro} would require further explanation.
+
+A yet more specific empirical challenge comes from cases where clearly a V-initial order is not tolerated and where information structural reasons seem to be inadequate in explaining this restriction.  In this paper we consider XP-V constructions in Greek and establish the environments in which such constructions are favoured. The name that prevails in the literature for such constructions is \textit{subject inversion}. However we believe this is a misnomer as, at least in Greek, nothing has really been `inverted'. The data suggests that this XP has not been moved from anywhere else in the clausal architecture, but instead that it Merges in that clause-initial position.  As a result, we will simply label these constructions XP-V.\footnote{The alternative would be to call these V2, as in Zubizarreta (1998), but we would not like to allude to V2 in Germanic languages. It falls beyond the scope of this paper to outline or typify what counts as a V2 language and what doesn't. The idea enjoys some recent revival. \citet{holmberg:13} and \citet{jouitteau:07}, among others are hinting that V2 is an umbrella term encompassing a number of different phenomena.} 
+
+  But if AA are correct that the EPP can be satisfied by verb movement then one must conclude that these elements are located in a hgher, topic-like position.
+
+This paper is devoted to these constructions in Greek and we  show that unlike what has frequently been assumed, these XP-V constructions are more widespread. More specifically, the empirical evidence reveals that XP-V in Greek: (a) involves both transitive and intransitive predicates, (b) that there is an aspectual split whereby when the predicate is marked with imperfective aspect, an initial XP is required whereas with perfective aspect the inverted structure is grammatical without an initial XP, and (c) appears in main and embedded clauses. The main claim of the paper is that the presence of these initial XPs is required by the EPP and that their semantic contribution can be unified under a specific view of the EPP as an argument introducer that we develop.
+
+
+
+
+ The table in \ref{tpros2} highlights the main empirical facts we have observed with the Greek XP-V data:
+\ex. \label{tpros2}
+
+\hspace*{-1cm}\noindent\begin{tabular}{||p{.7in}|p{.7in}|p{.7in}|p{.7in}|p{.7in} |p{1in}|p{1in}||} \hline
+\textbf{XPV properties} & \textbf{IS Effects} & \textbf{XP Obligatory} & \textbf{Type of XP} & \textbf{Type of predicate} & \textbf{subject position} & \textbf{Tense \&  Aspect} \\
+\hline
+ \textbf{} &  \textit{Wide or Verb Focus}  & \textit{obligatory} & \textit{Locative \& Temporal XP} & \textit{transitives \& intransitives} & \textit{null or post verbal subject} & \textit{Past (or Present) Imperfective}\\
+\hline
+\end{tabular}\\
+
+ Our empirical observations amount to the following, which to our knowledge, have not been recorded in any systematic manner in the literature for Greek: 
+ \begin{enumerate}
+\item[i.] XP-V is not restricted to unaccusative and unergative verbs, but may also involve transitive verbs.
+\item[ii.] the X(P)s may be locative or temporal, or both.
+\item[iii.] XP-V constructions may be assigned either wide or verum focus.
+\item[iv.] imperfective morphological marking on the verb is the preferred aspect of XP-V. 
+\item[v.] there is no evidence to suggest that these X(P)s have moved to their surface position from somewhere else.
+\end{enumerate}
+
+It is also important to note that interpretively these XPs could be `stage topics'. This, then, could lead one to suggest that these elements are realised in a specified position (i.e. [spec Top]).  This would, however, leave unexplained the fact that there appears to be no room for an overt subject in the standard case. As with all previous researchers, we will also assume here that these XPs are realised in [Spec T]. 
+The question then arises is why they are there and what licenses their presence in that position.  [Spec T] is a position that has at least two properties:
+
+\ex.
+\a.  It relates to the EPP property
+\b. It relates to Case-Agreement properties
+
+No Case-Agreement reasons can be invoked for their presence in [Spec TP].  As a result, the only option that remains is that they are there for EPP reasons.\footnote{\citet{zubizarreta:1998a} was among the first scholars who observed that in Spanish V1 orders are not always tolerated. \citet{pinto:97} made similar observations for Italian, whereas in recent years \citet{sheehan:06,sheehan:10} offers a comparative perspective on such structures in Romance languages. Admittedly with variations, all the above accounts of Romance XP-V have a twofold common denominator; they all advocate that EPP on T can be satisfied by non-subject elements on the one hand, and, on the other, the idea that these \textit{inverted} structures, at least for Spanish and Italian, serve to convey a special sort of information structure, one that has been variously called wide focus or all-focus, a notion that is in fact far from clear.} So let us turn to the EPP.
+
+
+\subsection{Interim summary} \label{summary}
+
+We have so far observed the following patterns in the data:  The presence of a locative or temporal  clause-initial XP corelates with imperfective aspect marking on the bverb and failure of the subject to raise to spec TP.  This pattern raises the following questions:
+
+\ex.
+\a. Why is the initial XP required?
+\b. Why isn't the subject able to raise and satisfy whatever requirement the XP is satisfying?
+\c.  What is the connection with the imperfective aspect?
+
+
+This set of properties is problematic under any set of assumptions that we know of.  For instance, one might assume that subject raising does not happen because verb movement satisfies the EPP.  At the same time, however, in order to justify the requirement for an XP in the initial position, scholars have resorted to the idea that there is a need of \textit{range assigneent} or \textit{range restriction} which can also, as it turns out, be satisfied by raising the subject, which brings us to the same question as why the subject remains low.  Furthermore, assuming that the locative/temporal XP is there to satisfy the EPP, again we need to ask why doesn't the subject do so. Perhaps, one approach might go, in order for the requred interpretation to emerge a situation related element (locative, temporal, etc.) must be located in a topic or topic-like position.  In other words, some sort of stage-topic must be realised overtly.  Combined with the idea that the EPP is satisfied by V-to-T raising this approach seems promising and reasonable.  It does, however, run into some issues.  First, it is well known that stage-topics are often null and can be interpreted by reference to the discourse situation, however that is represented.  If the stage-topic's presence is not related to the EPP then the requirement for being overt remains unexplained.  Furthermore, it is also unclear why the subject cannot raise and appear between the stage topic and the verb.  Again one might suggest that this does not happen because there is nowhere for the subject to move to, since the EPP does not make available a specifier position on T.  This would entail that in the following sentence the only available intepretation is that of a multiple topic:
+
+\ex.
+Sto sxolio o Giannis filise ti Maria
+
+
+The multiple topic intepretation, i.e. : \textit{As for (what happened at) school, as for Giannis, he kissed Mary} is at the very least and most charitable truly far-fetched.  From an intepretive point of view it is not far from :
+
+\ex.
+Sto Sxolio filise o gianis ti maria
+
+
+We take this as evidence that the spc T position is, in principle at least, still available to the subject in Greek.  in the next section we will propose an analysis that attempts to resolve the tensions described above.
+ 
+
+
+
+\section{Analysis}
+
+
+\subsection{Aspectual Intervention}\label{aspint}
+One of the important empirical propoerties that we have presented above is that in cases where an XP is required while the subject remains in situ is that the verb carries imperfective aspect.  Rather than relating the presence of the XP to the need for assigning range to the event, we pursue here an analysis inspired by recent work on aspectual splits in ergative languages\todo{references}.  A genreraly held idea is htat non-prefective aspects have greater complexity eitehr structurally (Coon) or fewturally (Kallin and van Urk).  Exprapolating form these analyses to our cases in Geek, we propose tha the Asp head located above vP in Greek is featurally more specified in the imperfective tha the perfective.  Borrowing from Kallin and van Urq we suggest that in Greek too imperfective aspect introduces a further $\varphi$ probe which agrees with the subject and case licenses in in-situ.  As a result the subject remains frozen in place and does not articipate in any furhter A-movement.  To put it in Rizzi's terms, [spec vP] beocems the subject's criterial position.  
+

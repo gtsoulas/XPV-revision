@@ -1,0 +1,593 @@
+\documentclass[11pt]{article}
+
+\usepackage{linguex}
+%\usepackage{parsetree}
+\usepackage{latexsym}
+\usepackage{natbib}
+\usepackage{todonotes}
+\usepackage{tikz}
+% Optional PGF libraries
+\usepackage{pgflibraryarrows}
+\usepackage{pgflibrarysnakes}
+\usepackage{lscape}
+\usepackage{pdflscape}
+\usepackage{forest}
+\usepackage{framed}
+\usepackage{xspace}
+\usepackage[stable]{footmisc}
+%\usepackage{fancybox, venn}
+%%
+%% New Commands
+%%
+\newcommand{\citeposs}[1]{\citeauthor{#1}'s (\citeyear{#1})}
+\newcommand{\sem}[2][M\!,g]{\mbox{ $[\![ #2 ]\!]^{#1}$}}
+\newcommand{\dbr}[1]{\mbox{ $ [\![ #1 ]\!] $}}
+\newcommand{\setof}[1] {\ensuremath{\left \{ #1 \right \}}}
+\newcommand{\tuple}[1] {\ensuremath{\left \langle #1 \right \rangle }}
+\newcommand{\typa}{{Type 1}\xspace}
+\newcommand{\typb}{{Type 2}\xspace}
+\newcommand{\Hd}{{$\mathcal{H}^{Dep}$}\xspace}
+\newcommand{\Pd}{{$\mathcal{P}^{Dep}$}\xspace}
+
+%\newcommand{\typa}{Type 1\xspace}
+%\newcommand{\typb}{Type 2\xspace}
+
+
+\def\str#1{{\setbox1=\hbox{#1}\leavevmode
+      \raise.45ex\rlap{\leaders\hrule\hskip\wd1}
+      \box1}}
+
+
+%\pretocmd{\ex}{\vspace{\Exredux}\begin{singlespace}}{}{}
+%\renewcommand{\ExEnd}{%
+    %\ifnum\theExDepth=0\global\unembeddedfalse\end{singlespace}\vspace{.5\Exred%ux}\else%
+%    \end{list}\addtocounter{ExDepth}{-1}\ExEnd\fi}
+
+
+\begin{document}
+
+% \leftrunning{Sifaki \& Tsoulas}  % Short author list
+% \rightrunning{XP-V in Greek} % Short title
+
+\title{Non-Subject XPs in Greek, Aspect, and the EPP} %\thanks{Thanks to XXX, YYY, ZZZ}
+
+%\date{February 2016}
+
+\maketitle
+
+%\tableofcontents
+
+%\newpage
+
+ 
+% \author[1]{\givenname{Evi} \surname{Sifaki}}
+
+% \address[1]
+% {%
+%   \inst{University of Roehampton}, % Institution name should be in \inst
+%   \addr{}, % Street 
+%   \addr{}, % Postcode etc
+%   \cnty{UK}  % Country
+%   \email{e.sifaki@roehampton.ac.uk} % email
+% }
+
+% \author[2]{\givenname{George} \surname{Tsoulas}}
+
+% \address[2]
+% {%
+%   \inst{University of York}, % Institution name should be in \inst
+%   \addr{}, % Street 
+%   \addr{}, % Postcode etc
+%   \cnty{UK}  % Country
+%   \email{george.tsoulas@york.ac.uk} % email
+% }
+
+\maketitle
+
+ \begin{abstract}
+ The paper investigates obligatory clause-initial non-subject XPs in Greek (henceforth XP-V) and reveals that XP-V constructions are more widely attested than has been assumed previously.  These clause initial XPs are obligatory with transitive and intransitive predicates, in main and embedded environments and show a clear preference for imperfective marking on the verb.  Following previous literature, we assume that the XP satisfies the EPP on [Spec T], especially as these XPs appear in complementary distribution with preverbal subjects.  EPP on C is shown to have four different inheritance (to T) possibilities. For the cases at hand, EPP transfers from T to C both a phrasal dependency (XP in [Spec T]) and a head dependency (V- T movement). 
+ \end{abstract}
+
+\section{Introduction}
+
+The structure of sentences with post-verbal nominative subjects\footnote{Sometimes misleadingly called \textit{ subject inversion constructions}.} in null subject languages has been studied quite extensively since \citet{rizzi:82} and has given rise to a variety of theoretical and analytical proposals.  A particular subcase of these constructions, however, remains more resistant to analysis.  It is known from the work of \citet{zubizarreta:1998a}, \citet{pinto:97}, \citet{sheehan:06} among many others, that in a number of cases, instances of post-verbal nominatives are incompatible with a phonologically empty sentence initial position.  The reason for this pattern is unclear.  Of course, the relevant structural position has been associated with the EPP for a long time but it is still an open question whether the sentence initial (non-subject, of course) XPs\footnote{ The XPs investigated here may range from adverbs to prepositional circumstancials which notoriously occupy different syntactic positions. We opt for the umbrella term XPs here, as our focus is not to investigate the precise syntactic differences of these adverbials (for a similar treatment, see Holmberg (2000)).} which  in these cases are satisfying the EPP in some form or whether their presence is linked to other (presumably discourse related) properties of the C-T region.  The present work addresses these constructions in Greek and argues that they come in two types.  Type 1 is exemplified in \ref{t11} and Type 2 in \ref{t21}:
+
+\exg. 
+Irthe o Yiannis\\
+arrived.3sg.perf. the John.nom\\ \label{t11}
+`John arrived/came'
+
+\exg. 
+Edo meletai i Maria \\
+here studies.3sg.impf. the Maria.nom \\ \label{t21}
+`Maria studies here'
+
+
+\typa and \typb sentences contrast in a number of respects both in their syntax and their interpretation.  In \typa sentences the verb is marked for perfective aspect, it must be in sentence-initial position and the subject cannot raise.  They receive a thetic interpretation (or an all/wide focus interpretation) and can only occur, with this interpretation, as matrix clauses.  \typa sentences have been analysed by \citet{pinto:97}, \citet{alexiadou:07} and \citet{sheehan:06} among others as involving some covert locative XP, given that the interpretation of \ref{t11} is \textit{ Yiannis arrived here/at this place}. In contrast in  \typb sentences the verb is marked imperfective, a sentence initial XP is required (generally a temporal or locative XP but not exclusively), again the subject cannot raise and the interpretation is roughly that of a locative/temporal predication.  Finally \typb patterns can be observed in both matrix and embedded clauses. This state of affairs raises a number of issues which can be put succinctly as follows:
+\begin{itemize}
+\item What is the status of the sentence initial XP?  Is it a structural/derived subject satisfying the EPP on T or is it in a different position?
+\item If EPP satisfaction is the reason behind the appearance of these XPs then how does that relate to \citeposs{alexiadou-anagnostopoulou:98} idea that in Greek (at least) the EPP can be satisfied by verb movement alone?  Furthermore, if \typb need to satisfy the EPP in this way then what of \typa sentences?
+\item What is the origin of the aspectual distinction?
+\item How do these characteristics correlate with the observed interpretations ? 
+\item What accounts for crosslinguistic differences, if any?
+\end{itemize}
+
+A full account of the above issues is beyond the scope of the present paper.  We focus here on the aspectual distinction and the ways that this distinction is structurally translated.
+Specifically, we develop an account of these constructions which combines insights from recent work on aspectual splits in Ergative languages, and most importantly the idea that imperfective aspect is \textit{structurally} more complex than the perfective (\citet{kalin-vanurk:12}), together with a view of the EPP as licensing a dual dependency (head and phrasal) which is transferred from C to T.
+
+The paper is structured as follows.  In section \ref{Greeksection} we present in some detail the properties of these constructions in Greek, focussing mainly on aspect marking followed by types of predicates, and the root/embedded distinction. Section \ref{aspin} is devoted to the aspectual issue and how syntactic aspectual structure can be brought to bear on the patterns at hand.  Section \ref{EPP1} turns to the nature of the EPP and shows how the patterns are accounted for. Section \ref{concl} concludes the paper.
+
+
+%We argue that these XPs are overt obligatorily in order to satisfy the EPP. %Given that there is a clear connection between the imperfective and these %clause-initial XPs, we further argue that these EPP satisfiers are also %responsible to assign telicity/perspective marking to an inherently atelic %structure (see section \ref{Telicity1}). Section \ref{EPP1} offers an %analysis on the EPP to capture these effects in Greek XP-V.
+
+
+\section{Two types of non-subject (XP)-V in Greek} \label{Greeksection}
+
+The literature on word order and information structure assignment in Greek is both robust and varied.\footnote{A somewhat representative (but far from complete) sample: \citet{alexiadou:99,alexiadou:00,spyropoulos-philippaki:01,georgiafentis:03,sifaki:03,roussou-tsimpli:06,gryllia:08,kechagias:10,haidou:12} and references therein.}  This robustness and variety notwithstanding, the status of the initial non-subject XP in so called \textit{inversion} constructions has received little attention compared to other elements.  \citet{alexiadou:07}  in her analysis of post verbal nominatives in Greek touches upon the issue and offers an analysis along the lines of \citet{borer:05a} whereby the sentence initial XP (she considers only locatives) serves as an event binder, a role that can be equally filled by perfective aspect.\footnote{Although the range of data that Alexiadou considers are similar to ours, they are more restricted.  This is because her main concern is to understand the extent to which inversion can be seen as an unaccusativity diagnostic. We will return to her analysis at various parts of this paper.}  \citet{alexiadou:96,alexiadou:07} on Greek, as well as \citet{pinto:97} on Italian, \citet{torrego:89} on Spanish, and \citet{borer:05a} on Hebrew inter alios, consider structures that involve intransitive predicates.  
+A common characteristic of these constructions across the different languages is that they usually come as an answer to the question `what happened?'. As a result, the argument goes, the whole sentence constitutes new information and therefore the whole sentence is in focus.  This is what a presentational/wide focus interpretation amounts to.  It is further suggested that only eventive unaccusative predicates participate in inversion constructions, as illustrated in \ref{alexiadou6}:
+
+\exg.
+erhotan/irthe o Yiannis\\
+was-coming.3sg.impf./came.perf. the John.nom\\ \label{alexiadou6}
+`John was coming/came'
+
+Unaccusative predicates as in \ref{alexiadou6} are grammatical in V1 orders in the imperfective or perfective aspect. 
+As already mentioned, the interpretation that \ref{alexiadou6} yields is that \textit{John arrived \textbf{here}}. This interpretation is due either to the fact that a verb like \textit{come} inherently selects for a potentially empty complement \textit{here}, or that there is an empty locative phrase with the same meaning.  The latter option is the one that has generally been assumed.  Allowing raising of the empty locative provides a means to check the EPP on T.  However, the case of the imperfective is different.  In these cases it is not possible to assign the same wide focus interpretation to the sentence as it stands. Instead the only available interpretation is a habitual one:
+
+\exg.
+Sti filaki dhen erhotan kanenas na me di\\
+in  prison neg. was-coming.3sg.impf nobody to.subjunctive me see\\
+`In prison, nobody was coming to see me'
+
+\exg.
+erhotan o Yiannis\\
+was-coming.3sg.impf the John.nom\\ \label{george20}
+`John was coming'
+
+The interpretation here is more akin to a verum focus reading (e.g. focus on the verb) and the intonation will usually mark this reading.
+
+Alexiadou further claims that the presupposed locative adverb contributes a telic interpretation to the unaccusative predicate. As unaccusatives express a change of state, they are compatible with V1 orders.
+In general, unergatives lack such an interpretation which can only be achieved with a preverbal locative adverbial when the verb is marked with the imperfective (Alexiadou 1996: 45, footnote 11).  
+
+So, it seems that there is scope to investigate the distribution of the sentence initial XP further (than intransitives) and seek to establish more firmly the nature and extent of the aspectual restriction and the reason for the requirement that the relevant XP appears in sentence initial position.  We turn to the aspectual issue in the next subsection.
+
+
+
+
+\subsection{Aspectual restrictions}
+
+There are certain experiencer predicates that when the verb is in the imperfective\footnote{In Greek, viewpoint aspect is grammatically encoded on the verbal paradigm and distinguishes between the perfective and the imperfective. The perfective is normally interpreted as telic, whereas the imperfective as atelic, yielding habitual, progressive, as well as generic readings (see \citet{mozer:94,sioupi:02,tsimpli-papadopoulou:05,giannakidou:09} inter alios). }, as in \ref{roussou-tsimpli7} and \ref{roussou-tsimpli8}, then a temporal (and/or locative) XP must appear preverbally:\footnote{For a view that the inversion of the object in experiencer predicates can satisfy the EPP see \citet{landau:10}.}
+
+\exg.
+*(pada/tote) andipathousa/*adipathisa tus kavgades\\
+always/then was-detesting.1sg.impf/detested.1sg.perf the quarrels.acc\\ \label{roussou-tsimpli7}
+`I have always detested quarrels/Then I detested quarrels'
+
+\exg.
+*(stin Karaiviki/pada) fovomoun/*fovithika tis katejides\\
+in-the Caribbean/always was-fearing.1sg.impf/feared.1sg.perf the storms.acc\\ \label{roussou-tsimpli8}
+`In the Caribbean, I always feared the storms'
+
+(examples adapted from \citet[pp. 348]{roussou-tsimpli:06}
+
+Interestingly these experiencer predicates do not allow a post verbal pronominal subject.\footnote{ Such null-subject constructions provide additional reasons that \textit{subject inversion} is a misnomer.} Instead, they only allow null subjects:
+
+\exg.
+*(stin Karaiviki/pada) fovomoun/*fovithika ego tis katejides\\
+in-the Caribbean/always was-fearing.1sg.impf/feared.1sg.perf  I the storms.acc\\ \label{roussou-tsimpli9}
+`In the Caribbean, I always feared the storms'
+
+As previously mentioned most researchers argue that these \textit{inversion} constructions involve intransitive predicates. To begin with, \citet{pinto:97} observes that the following unergative verbs in Italian require an XP clause initially: \textit{studiare=study}, \textit{dormire=sleep}, \textit{giocare= play} and \textit{camminare=walk}. Similar predicate-related restrictions hold true for Greek:
+
+\exg.
+\#meletaei/\#meletise/\#meletouse i Maria\\
+is-studying.3sg.impf/studied.perf/was-studying.impf the Mary.nom\label{unergatives1}\\
+`Mary is studying/studied/was studying'
+
+\ref{unergatives1} is felicitous only with a verum focus interpretation. For \ref{unergatives1} to receive a wide focus interpretation, a temporal or locative XP is required clause-initially:
+
+\exg.
+kathe mera/se afto to grafeio meletaei/meletouse i Maria\\
+every day/in this the office is-studying.3sg.impf/was-studying.impf the Mary.nom\label{unergatives2}\\
+`Every day/in this office, Mary is studying/was studying'
+
+The XP cannot appear clause-finally, as in \ref{unerg3}, but it can intervene between the verb and the subject, as in \ref{unerg42}:
+
+\exg.
+*meletaei/*meletouse i Maria kathe mera\\
+is-studying.3sg.impf/was-studying.impf the Mary.nom every day\label{unerg3}\\
+`Every day, Mary is studying/was studying'
+
+\exg.
+\#meletaei/\#meletouse kathe mera i Maria\\
+is-studying.3sg.impf/was-studying.impf every day the Mary.nom \label{unerg42}\\
+`Every day, Mary is studying/was studying'
+
+ \ref{unerg42} is fine with a narrow focus interpretation where focus marks either the XP or  (less so) the subject. On the other hand, the perfective aspect and a clause initial XP are not compatible, as shown by the ungrammaticality of \ref{unerg2}:
+
+\exg.
+* to apogevma/se afto to grafeio meletise i Maria\\
+in-the afternoon/in this the office studied.3sg.perf the Mary.nom\\ \label{unerg2}
+`Mary studied in the afternoon/in this office'
+
+A similar picture holds with the other verbs that Pinto investigates:
+
+\exg.
+\#koimatai/\#kimithike/*kimotan i Maria\\
+ is-sleeping.3sg.impf/slept.perf/was-sleeping.impf the Mary.nom\label{unergative4}\\
+`Mary is sleeping/slept/was sleeping '
+
+\exg.
+meta to sxoleio/safto to krevati/edo koimatai/kimotan i Maria\\
+after the school/in the bed/here is-sleeping.3sg.impf/was-sleeping.impf the Mary.nom\label{unergative3}\\
+`After school/in this bed/here, Mary is sleeping/was sleeping'
+
+Interestingly, the XPs above cannot appear in any other position in the clause:
+
+\exg.
+*koimatai/*kimotan meta to sxoleio/safto to krevati/edo  i Maria\\
+is-sleeping.3sg.impf/was-sleeping.impf after the school/in the bed/here the Mary.nom\label{unergative35}\\
+`After school/in this bed/here, Mary is sleeping/was sleeping'
+
+\exg.
+*koimatai/*kimotan i Maria meta to sxoleio/safto to krevati/edo\\
+is-sleeping.3sg.impf/was-sleeping.impf the Mary.nom after the school/in the bed/here \label{unergative36}\\
+`After school/in this bed/here, Mary is sleeping/was sleeping'
+
+\ref{unergative31} is more acceptable than \ref{unerg2}, yet the perfective and the XP clause-initially, once again, do not co occur:
+
+\exg.
+\#meta to sxoleio/\#se afto to krevati/\#edo kimithike i Maria\\
+after the school/in this the bed/here slept.3sg.perf the Mary.nom\label{unergative31}\\
+`After school/in this bed/here, Mary slept'
+
+The verb \textit{pezo} has similar aspectual restrictions:
+
+\exg.
+*pezei/\#epexe/*epeze i Maria\\
+is-playing.3sg.impf/played.perf/was-playing.impf the Mary.nom\label{unergative5}\\
+`Mary is playing/played/was playing'
+
+The XP is required clause-initially when the verb is in the imperfective, as in \ref{unergative6}:
+
+\exg.
+ta apogevmata/sto dialeima pezei/epeze i Maria\\
+in-the afternoons/in-the break is-playing.3sg.impf/was-playing.impf the Mary.nom\label{unergative6}\\
+`Mary is playing/was playing in the afternoons/in the break'
+
+The perfective aspect does not tolerate a clause-initial XP, as shown in \ref{unergative7}:
+
+\exg.
+*ta apogevmata/\#sto dialeima epexe i Maria\\
+in-the afternoons played.3sg.perf the Mary.nom\label{unergative7}\\
+`Mary played in the afternoons/in the break'
+
+
+The plural temporal XP \textit{ta apogevmata}, indicates repetitive/durative action which combines well with the imperfective reading of the verb should we want to indicate some type of habitual interpretation. Nevertheless, the same doesn't hold true with \ref{unergative7} in which the verb is in the perfective aspect, so it is only natural that the XP \textit{ta apogevmata} is not legitimate in this position. However, the singular temporal XP \textit{sto dialeima} is also infelicitous here.
+
+As before, the XP cannot appear in any other position in the clause with the verb in the imperfective:
+
+\exg.
+ *pezei/*epeze sto dialeima i Maria\\
+ is-playing.3sg.impf/was-playing.impf in-the break the Mary.nom\label{unergative61}\\
+`Mary is playing/was playing in the break'
+
+\exg.
+ *pezei/*epeze i Maria sto dialeima\\
+ is-playing.3sg.impf/was-playing.impf  the Mary.nom in-the break\label{unergative62}\\
+`Mary is playing/was playing in the break'
+
+All the above XP-V imperfective structures encode a habitual reading. However, there are XP-V structures that are interpreted generically. The unergative verb  \textit{klevo} in the 3rd plural in \ref{gen1} yields a generic reading:\footnote{Spyropoulos (2002), too, shows that the imperfective, in addition to habitual and progressive readings, can also lead to a generic time reference as in \ref{spyropoulos2}:
+
+\exg.
+sta Kalavrita ftiaxnoun kalo tiri\\
+in-the Kalavrita are-making.3pl.impf good cheese.acc\\ \label{spyropoulos2}
+`They make good cheese in Kalavrita'
+
+\hfill \citet[pp. 3]{spyropoulos:02}
+
+Following \citet{cardinaletti-starke:99}, Spyropoulos argues that in order for \ref{spyropoulos2} to yield a generic reading, a \textit{range restrictor} is required, that is an XP such as \textit{sta Kalavrita} which restricts the set of people that the null-subject in \ref{spyropoulos2} may refer to.}
+
+\exg.
+*(edo) klevoun/eklevan\\
+here are-stealing.3pl.impf/were-stealing.impf\\ \label{gen1}
+`People steal/used to steal here'
+
+Again the XP cannot appear post verbally:
+
+\exg.
+*klevoun/eklevan edo\\
+ are-stealing.3pl.impf/were-stealing.impf here\\ \label{gen2}
+`People steal/used to steal here'
+
+ However, it is not only unaccusative and unergative verbs that may participate in constructions that require such sentence initial XPs. As we have already seen in \ref{roussou-tsimpli7} and \ref{roussou-tsimpli8}, transitive verbs are subject to the same restriction.  For instance, the verb \textit{ftiaxno}, a transitive verb, may also require an XP clause-initially:
+
+\exg. 
+\#ftiaxnei/\#eftiaxe/\#eftiaxne kulurakia i Maria\\
+is-making.3sg.impf/made.perf/was-making.imperf cookies the Mary.nom\label{evi15}\\
+`Mary makes/made/was making cookies'
+
+Unlike the wide focus interpretation of \Next, \Last receives an interpretation that is similar to the one that we observed for the imperfective in \ref{alexiadou6}, i.e. a verum focus interpretation, with main stress on the initial V: 
+
+\exg.
+stis giortes ftiaxnei/\#eftiaxe/eftiaxne kulurakia i Maria\\
+in-the festivities is-making.3sg.impf/made.perf/was-making.impf cookies the Mary.nom\label{evi14}\\
+`During the festive season, Mary makes/made/was making cookies'
+
+The transitive verb follows the same pattern in terms of the location of the XP. The imperfective verb requires the XP to appear in a clause-initial position only:
+
+\exg.
+*ftiaxnei/*eftiaxne stis giortes kulurakia i Maria\\
+ is-making.3sg.impf/was-making.impf in-the festivities cookies the Mary.nom\label{evi141}\\
+`During the festive season, Mary makes/was making cookies'
+
+\exg.
+*ftiaxnei/*eftiaxne  kulurakia stis giortes i Maria\\
+ is-making.3sg.impf/was-making.impf  cookies in-the festivities the Mary.nom\label{evi142}\\
+`During the festive season, Mary makes/was making cookies'
+
+
+The above examples reveal that perfective constructions are not compatible with an XP clause-initially, yielding from infelicitous (i.e. not with the required wide focus interpretation) to purely ungrammatical constructions.  On the other hand, imperfective verbs require a locative or temporal XP clause-initially.  In these cases the most natural reading is that of wide focus, where no constituent is foregrounded. 
+
+It is interesting to note that there exist constructions in the perfective that can co occur with an XP clause-initially, but these constructions are only permissible when the verbs are interpreted neither habitually nor generically.
+
+\subsection{Initial XPs  and the perfective}
+
+
+As shown by \citet{pinto:97} for Italian, unaccusative predicates like \textit{zo=live} and \textit{petheno=die} require an overt locative clause-initially. The same pattern holds true for Greek:
+
+\exg.
+*(edo) ezise/zouse	i 		Maria Kallas\\
+	here lived.3sg.perf/was living.impf the Maria Kallas.nom\\ \label{greek2}
+	`Maria Kallas lived/was living here'
+
+Given the nature of the verbs \textit{zo} and \textit{petheno}, in \textit{zo} the verb may appear in the past tense with perfective and imperfective aspect at least in \ref{greek2} where it refers to a deceased person such as \textit{Maria Kallas}. On the other hand, \textit{petheno}, as the event happens only once and is not durative, only the past perfective reading is acceptable, unless a temporal XP is inserted pointing to the specific time/date of the death of Maria Kallas:\footnote{It is interesting to observe that the verb can also be used in the future perfective provided it appears in narrative contexts for vividness:
+To 1977 tha pethanei i Maria Kallas (In 1977 Maria Kallas will die).}
+
+\exg.
+*(edo) pethane/*pethenei i Maria Kallas\\
+here died.3sg.perf/is-dying,impf the Maria Kallas.nom\\
+`Maria Kallas died/is dying here' 
+
+\footnote{We can also use the locative XP \textit{edo} in a concessive manner, but this use of \textit{edo} is not of interest to us here:
+
+\exg.
+edo pethenei i dimokratia kai theloun dimopsifisma\\ 
+here  is-dying.3sg.impf the democracy and want.3pl referendum.acc\\ \label{greek262}
+`Even though democracy is dying, they want a referendum'
+
+}
+
+\exg.
+to 1977 pethenei i Maria Kallas\\
+the 1977 died.3sg.impf the Maria Kallas.nom\\ \label{greek256}
+`Maria Kallas died in 1977'
+
+\citet{sitaridou:12} draws our attention to the following constructions in Greek which are ungrammatical without an initial XP (in this case a temporal adverb), \ref{sitaridou4}: 
+
+\exg.
+xthes ipevale i Maria tin paretisi tis\\
+yesterday submitted.3sg.perf the Mary.nom the resignation.acc of-hers\\ \label{sitaridou3}
+`Mary submitted her resignation yesterday'
+
+\exg.
+*ipevale i Maria tin paretisi tis\\
+submitted.3sg.perf the Mary.nom the resignation.acc of-hers\\ \label{sitaridou4}
+`Mary submitted her resignation'
+
+\hfill \citet[pp. 583]{sitaridou:12}
+
+That the adverb cannot appear clause finally suggests that what is at stake is the lack of any material in the initial position:
+
+\exg.
+*ipevale i Maria tin paretisi tis xtes\\
+submitted.3sg.perf. the Mary.nom the resignation.acc of-hers yesterday\\ \label{sitaridou5}
+`Mary submitted her resignation yesterday'
+
+As with the verbs of \textit{zo} and \textit{petheno}, \textit{ipevale}, is also taken here to be in the perfective. The verb form is morphologically ambiguous between perfective and imperfective, but it is only natural to assume that resigning encodes a telic interpretation and not something habitual.  
+
+There is a clear split between the imperfective and the obligatory presence of an XP clause-initially and the perfective which does not tolerate an XP clause-initially, unless the verb's meaning is such that necessitates some further specification of when an event like `dying' or `resigning' took place. 
+
+\subsection{Non-subject clause initial XPs in embedded contexts}
+
+The same XP-V pattern is further attested in some embedded environments, where the XP appears after the complementizer and the same predicate aspectual restrictions hold:
+
+\exg.
+Mou eipe oti edo meletaei/\#meletise/meletouse i Maria\\
+to-me said.3sg that here is-studying.3sg/studied/was studying the Mary.nom\\ \label{evi20}\
+`He told me that Mary is studying/studied/was studying here'
+
+\exg.
+Mou eipe oti edo koimatai/\#kimithike/kimotan i Maria\\
+to-me said.3sg that here is-sleeping.3sg/slept/was-sleeping the Mary.nom\\ \label{evi21}\
+`He told me that Mary is-sleeping/slept/was-sleeping here'
+
+
+Other transitive verbs, also show similar acceptability patterns: 
+
+\exg.
+mou eipe oti sto parko evgaze/\#evgale/vgazei to skilo volta i Maria\\
+to-me said.3sg that in-the park was-taking-out/took-out/is-taking-out.3sg the dog for-a-walk the Mary.nom\\ \label{embedded1}
+`He told me that Mary was taking/took out/is taking the dog out for a walk in the park'
+
+\exg.
+*mou eipe oti evgaze/vgazei sto parko to skilo volta i Maria\\
+to-me said.3sg that  was-taking-out/is-taking-out.3sg  in-the park the dog for-a-walk the Mary.nom\\ \label{embedded11}
+`He told me that Mary was taking/took out/is taking the dog out for a walk in the park'
+
+\exg.
+*mou eipe oti evgaze/vgazei  to skilo volta sto parko i Maria\\
+to-me said.3sg that  was-taking-out/is-taking-out.3sg the dog for-a-walk in-the park the Mary.nom\\ \label{embedded12}
+`He told me that Mary was taking/took out/is taking the dog out for a walk in the park'
+
+\exg.
+mou eipe pos sto Parisi agorase spiti i Maria\\
+me told that in-the Paris bought.3sg.perf. house the Mary.nom\\ \label{embedded22}
+`He told me that Mary bought a house in Paris'
+
+\exg.
+Mou eipe oti/pos edo ezise i Maria Kalas\\
+to-me said.3sg that here lived.3sg.perf the Maria Kalas.nom \label{embeddedpinto}\\
+`He told me that Maria Kalas lived here'
+
+\exg.
+*Mou eipe oti/pos ezise i Maria Kalas edo\\
+to-me said.3sg that lived.3sg.perf the Maria Kalas.nom here \label{embeddedpinto2}\\
+`He told me that Maria Kalas lived here'
+
+Interestingly, the XP-V pattern with overt complementizers is very similar to the one in main environments. In all the sentences above the XP cannot appear in any other position in the embedded clause, except straight after the complementizer. With the exception of \ref{embedded22} and \ref{embeddedpinto}, the same aspectual restrictions hold for both main and embedded clauses, namely the imperfective requires these XPs.  \ref{embedded22} permits the perfective aspect, as the reported speech here recounts the episodic reading of \textit{buying a house}, which normally does not happen repeatedly, but has a telic interpretation. The same holds true for \ref{embeddedpinto} where \textit{Maria Kallas} is now deceased. The fact that the same patterns obtain in main and embedded clauses constitutes an argument against analysing them as cases of something akin to locative inversion\footnote{ For a non-exhaustive list of literature on locative inversion, see \citet{bresnan:94}, \citet{bresnan-kanerva:89}, and \citet{levin-rappaport:95}.}   which is known to be a main clause phenomenon.
+
+\subsection{Interim summary} \label{summary}
+
+We have so far observed the following patterns in the data. The presence of a locative or temporal  clause-initial XP correlates with imperfective aspect marking on the verb and failure of the subject to raise to spec TP.  This pattern raises the following questions:
+
+\ex.
+\a. Why is the initial XP required?
+\b. Why isn't the subject able to raise and satisfy whatever requirement the XP is satisfying?
+\c.  What is the connection with the imperfective aspect?
+
+
+This set of properties is problematic under any set of assumptions that we know of.  For instance, one might assume that subject raising does not happen because verb movement satisfies the EPP.  At the same time, however, in order to justify the requirement for an XP in the initial position, scholars have resorted to the idea that there is a need of \textit{range assignment}\footnote{Different researchers have assigned different names to this XP. For Borer (2005) range assigners, Alexiadou (2007), discourse/perspective marker, \citet{cohen-erteschik-shir:02}, stage topics, \citet{giorgi:10}, speaker's coordinates,  etc.}  or \textit{range restriction} which can also, as it turns out, be satisfied by raising the subject, which brings us to the same question as why the subject remains low.  Furthermore, assuming that the locative/temporal XP is there to satisfy the EPP, again we need to ask why doesn't the subject do so. Perhaps, one approach might go, in order for the required interpretation to emerge a situation related element (locative, temporal, etc.) must be located in a topic or topic-like position.  In other words, some sort of \textit{stage-topic} must be realised overtly.\footnote{For an approach along these lines, see \citet{basilico:03}.}  Combined with the idea that the EPP is satisfied by V-to-T raising this approach seems promising and reasonable.  It does, however, run into some issues.  First, it is well known that stage-topics are often null and can be interpreted by reference to the discourse situation (see, again, \citet{basilico:03}), however that is represented.  If the stage-topic's presence is not related to the EPP then the requirement for being overt remains unexplained.  Furthermore, it is also unclear why the subject cannot raise and appear between the stage topic and the verb.  Again one might suggest that this does not happen because there is nowhere for the subject to move to, since the EPP does not make available a specifier position on T.  This would entail that in the following sentence the only available interpretation is that of a multiple topic:
+
+\ex.
+Sto sxolio o Yiannis filise ti Maria\\
+at school the John.nom kissed.3sg.perf. the Mary.acc\\
+`John kissed Mary at school'
+
+
+
+The multiple topic interpretation, i.e. : \textit{As for (what happened at) school, as for Giannis, he kissed Mary} is at the very least and most charitable truly far-fetched, if at all possible.  From an interpretive point of view it is not far from :
+
+\ex.
+Sto sxolio filise o Yiannis ti Maria\\
+at school kissed.3sg.perf. the John.nom the Mary.acc\\
+`John kissed Mary at school'
+
+We take this as evidence that the [Spec T] position is, in principle at least, still available to the subject in Greek. In the next section we will propose an analysis that attempts to resolve the tensions described above.
+ 
+
+
+
+\section{Analysis}
+
+
+\subsection{Aspectual Intervention}\label{aspin}
+One of the important empirical properties that we have presented above is that in cases where an XP is required while the subject remains in situ is that the verb carries imperfective aspect.  A natural approach to these patterns suggests that the imperfective is in some sense too `weak'.  This can be made more precise -following \citet{alexiadou:07}- by suggesting that the imperfective cannot be used to deictically identify events, while the perfective can.  \citet{alexiadou:07} further proposes that the requirement for a locative is related to \citeposs{partee-borchev:05} work.
+
+
+ Rather than relating the presence of the XP to the need for assigning range to the event and the associated weakness of the imperfective, we
+base our proposal here on the combination of properties that the imperfective seems to have crosslinguistically.  On the one hand the imperfective is semantically weak in that it cannot deictically identify an event.  On the other hand, it seems to be syntactically more complex.  We
+pursue here an analysis inspired by recent work on aspectual splits in ergative languages.  
+%Contrary to the approach that takes the imperfective to be a weaker %element, we capitalise here on the idea that it is more complex.  
+A commonly held idea is that non-perfective aspects have greater complexity which can be manifested  either structurally \citep{coon:13, coon-preminger:15,laka:06} or featurally \citep{kalin-vanurk:12}. Simplifying somewhat and abstracting away from details the idea is that non-perfective aspects involve either a biclausal structure or some extra structure that creates a new case domain.  \citet{kalin-vanurk:12} on the other hand suggest that this can also be realised in terms of an extra $\phi$ probe in Asp which agrees with the subject.  The result of this extra specification/structure on aspect is to isolate the subject in the lower part of the clause and yield different case marking patterns.  Now Greek does not show differential subject marking but we would like to suggest that the patterns involving blocking the subject from raising out of the vP are intimately linked to the nature and specification of the aspectual head.  The proposal is simply that imperfective aspect  introduces a further $\varphi$ probe which agrees with the subject and case licenses it in-situ.  As a result the subject remains frozen in place and does not participate in any further A-movement.  To put it in Rizzi's terms, [Spec vP] becomes the subject's criterial position.  
+
+The data largely follow from this proposal.  The derivation of the so-called inversion cases will be as follows:
+
+\ex.
+\a. build vP
+\b. Merge Asp$_{IMPERFECTIVE, u\phi, Nom}$
+\c. Asp$_{IMPERFECTIVE, u\phi, Nom}$ probes the subject in spec vP
+\d. u$\phi$ of ASP is valued, subject is assigned Nominative Case
+\e. Merge T
+\b. Move V-to-T
+\b. Merge initial XP to satisfy the EPP
+
+
+Under this proposal, of course, raising of the subject to a topic or focus position is not blocked and therefore cases where preverbal subjects co-occur with the imperfective are not ruled out as long as the subject is in a higher-than-Spec-TP position.  As for cases where perfective aspect co occurs with postverbal, in-situ subjects, the subject agrees with T (and is thus case licensed by T) and a situation \textit{pro} is merged into [Spec T]. In these cases Asp does not have an extra $\phi$ probe that agrees with the subject:
+
+\ex.
+\a. build vP
+\b. Merge Asp$_{PERFECTIVE}$
+\c. Merge T $_{Nom}$ 
+\d. T $_{Nom}$ probes the subject in Spec vP
+\e. $_{Nom}$ of T is valued, subject is assigned Nominative Case
+\f. Move V-to-T
+\f. Merge \textit{pro} in Spec T to satisfy the EPP
+
+
+The XP-V (imperfective) structure would be as follows:
+
+\begin{forest}
+  [TP
+    [XP$_{LOC/TEMP}$]
+    [T' [T] [AspP [Asp[$ \begin{array}{l}\varphi-probe\\Case_{NOM}\\IMPERF\end{array}$]]
+    [vP[DP] [v'[v] [VP]]]]]]
+\end{forest}
+
+
+
+
+
+%Before we do this we need to mention one more observation that derived from our data, the one that links the imperfective and these XPs to a wide focus interpretation. We are inclined to link this specific interpretation to the weak nature of the imperfective. As we have seen there is no deictic interpretation derived by these structures. Moreover the interpretation of these constructions is either habitual or generic and as a result we do not expect that a specific constituent would receive a focus interpretation. On the other hand, verb initial orders with the perfective which recounts an episodic reading have been associated with a verum focus.  
+
+%There are, however two further points to note.  First, as it stands the %proposal undergenerates.  Specifically, it is not true that every time the %verb is marked for imperfective the subject cannot raise out of the vP.  for %the purposes of this particular argument we can set aside the explanation of %lack of subject raising in terms of EPP satisfaction via V-to-T (we return %to this point shortly).  There are many cases of imperfective aspect where %the subject can raise out of the vP and, conversely, cases of perfective %aspect with the subject remaining inside the vP.  The latter can be safely %set aside.  In these cases the subject agrees with T (and is thus case %licensed by T) and, as we will claim shortly a situation \textit{pro} is %merged into [Spec T] 
+
+The analysis put forward here derives the data elegantly and links the aspectual restrictions to the case licensing of the subject.  The final question remaining is that of the EPP.  Our claim was that the sentence initial XPs are there to satisfy the EPP as a formal requirement.  If this is correct, it must be examined against the idea that V-movement, in a language like Greek, also serves to satisfy the EPP.  In the next section we will present two views of the EPP as a formal property which show that our analysis and the idea that the EPP may be satisfied via verb movement are not only compatible but taken together they are illuminating.
+
+
+
+\subsection{Two views on the EPP} \label{EPP1}
+
+\subsubsection{The EPP as a feature}
+
+Following \citet{alexiadou-anagnostopoulou:98} it is  assumed that, whatever the precise nature of the EPP requirement, it can be satisfied either by head movement into the head that bears the EPP feature (note that the head that moves must bear the right kind of feature too), or by phrasal movement into the specifier of the head that bears the EPP feature.  On this view, the EPP is a property of features, rather than heads - in other words, it is a different expression of the early notion of \textit{feature strength}.  
+An alternative view would be to take seriously much of current discourse on the EPP that talks of the \textit{EPP feature} which means that the EPP is a property of bundles of features (Lexical Items).  There is ample evidence that the former view represents much of the observed reality.  In the majority of cases the element that moves is the element that has been targeted by \textsc{Agree}.  Even the majority of expletives carry the relevant feature (typically D-feature).  However, it turns out that this is not always so. The data discussed in this paper suggest that  the EPP requirement seems to be satisfied by elements that have little or nothing to do with any special (non-EPP related) feature of the head they attach to.  Beyond the present paper, 
+most notably, \citet{holmberg:00}, in his discussion of Stylistic Fronting in Icelandic convincingly shows that [Spec T] may be filled by various elements such as predicative adjectives, negation, etc. on the provision that a subject or an expletive cannot be moved or merged into [Spec T] in order to satisfy the EPP property associated with T. So there is evidence that the EPP can be construed as a feature and as a property of a feature.  The two onstruals have different predictions.  Consider for instance the case where the EPP \textit{qua} feature might require that [Spec T] be filled by an X$^{max}$, a conservative suggestion.  English appears generally to be of this sort.  But consider now what happens if the EPP is construed as a feature probing into its C-command domain.  It is quite natural to suppose that minimal search, in this case, will not yield the subject DP but rather vP as the closest X$^{max}$.  This will then cause vP raising to [Spec, T] and an order like S Adv V O would not be revable unless the subject raised further to a higher topic position.  The rather dubious nature of the last movement notwithstanding, this is what the English clause structure ought to be like under an EPP \textit{qua} feature approach. Whether the relevant structure is indeed defensible is not at issue here.  Current understanding of the clausal structure of English suggests that it is not.  What this might mean in turn is that English is a language where the EPP is a property of a feature (D or C) rather than a feature in its own right.  On the other hand there could be languages where the EPP is a feature on its own right and can be satisfied by any XP.  Scandinavian stylistic fronting may be a case in point, though still one would have to explain why it is not the vP that raises in these cases as minimal search would identify it as the closest X$^{max}$.
+One explanation for this pattern would appeal to the notion of generalised anti-locality \citep[][et.seq]{abels:03}, raising of the vP would violate anti-locality and make it thereby ineligible to move causing the search algorithm to continue inside the vP.  Of course, an account along these lines could also be invoked for English (and other EPP \textit{qua} property of features languages) and in the case of subject raising nothing would change.  The difference is where non-subjects are concerned.   English disallows them and cannot, therefore, be considered a feature-EPP language.  Icelandic does allow them and can be so construed.  It follows then that we can classify languages, in this view, with respect to the way the EPP property is actually expressed, i.e. as a property of lexical items or a property of features thereof. However, when we put Greek into the mix, assuming that \citeposs{alexiadou-anagnostopoulou:98} theory is broadly correct and given the data that we have analysed in the present paper, it would appear that there are also mixed languages.  In these languages both types of realisation of the EPP property are allowed.  Given that there is a clear distinction between a feature and a property of a feature, there is no internal contradiction.  Greek represents one of the logical possibilities, namely the one where the epiphenomenal EPP property of T can be satisfied \textit{multiply}. 
+
+
+\subsubsection{The EPP as dependency licencing}
+
+A different view of the EPP is a way of licensing specific dependencies from the phase heads.  To explain this view consider  one way in which we can think of the semantic effect of the  EPP. We can consider the function of the  EPP  in C and in T in the same way that we generally understand the function of v.  In other words, the function of introducing another argument.  Regarding v, following \citet{kratzer:96}, the idea is that it is this head that introduces the external argument.  At the same time, v has been seen as a verbalising element that triggers movement of the root generated in the lower $\sqrt{}$ position.  Suppose now that instead of building argument introduction into the semantics of the v, we link it with the presence of an EPP feature.\footnote{An idea along these lines was pursued by \citet{butler:04}.}  Nothing much would change at the v phase.  Interestingly, however, we see that the EPP on v, under this view, triggers a dual dependency.  In other words it is not simply the case that it can be satisfied either by head movement or by phrasal movement but rather that \textit{both} possibilities must be realised.
+
+We can then imagine that the EPP \textit{qua} requirement could have two alternative formulations:
+
+\ex.
+The EPP (Disjunctive formulation)\\
+The EPP requirement of a head $\mathcal{H}$ may be satisfied \textbf{either} by phrasal movement to [spec, $\mathcal{H}$] \textbf{or} movement of another head $\mathcal{J}$  into {\cal H}.
+
+
+\ex.  The EPP (Conjunctive Formulation)\\
+The EPP requirement of a head $\mathcal{H}$ must be satisfied \textbf{both} by phrasal movement to [spec, $\mathcal{H}$] \textbf{and} movement of another head $\mathcal{J}$ into {\cal H}.
+
+In the case of v we see that the conjunctive formulation seems to be operative. The requirement for a specifier amounts to argument introduction.
+
+Turning now to the C phase.  Assuming that all operations are driven by the phase heads and that the EPP property of T is the result of transfer from C \citep{chomsky:08}, then it is also reasonable to assume that if there are two EPP dependencies they may be transferred independently.  Logically, we have the following possibilities:
+
+\paragraph*{Option 1: \textit{C transmits to T both dependencies}.}  These cases are exactly parallel with transitive v.  Head movement into T and subject movement to [Spec T].  In the present theory, this would be how Greek SVO is derived, and more generally XP-V in a language like Greek.
+
+\paragraph*{Option 2:  \textit{C transmits the Head dependency to T and keeps the phrasal dependency.}}  This case would require V to T and XP movement to [Spec C].  This is how Wh-questions are derived (at least in Greek, where in wh-questions there is no subject movement to [Spec T]).
+
+\paragraph*{Option 3:  \textit{C transmits the phrasal dependency to T and keeps the head dependency.}}  This is the case of Yes/no questions with  inversion.
+
+\paragraph*{Option 4: C keeps both dependencies.}  In Greek at least these cases may be instantiated by wh-questions that also require V-to-C and where subjects cannot appear between the wh-word and the verb.
+
+If the above is on the right track, we should also ask about the exact contribution of the EPP on T (at least when some part of the complex is transferred onto it).  Setting aside the head dependency, the phrasal dependency's contribution can be modelled on that of v.  Namely, another \textit{argument} is introduced.  The EPP serves to make of the constituent that hosts it an unsaturated predicate, roughly amounting to an abstraction over the event argument.
+
+The two views on the EPP that we have just outlined aim to capture the dual role that the EPP appears to be playing.  Whether the two are equivalent it is not entirely easy to say.  Both views allow typological generalisations and distinctions to be expressed.  We suspect that a combination of the two views would prove to be the right approach to the EPP.  In terms of the contribution of the core data that we analysed in this paper, the development on the EPP allows us to bring together the intuitions expressed by many scholars about spatial and temporal location, range assignment or discourse perspective apparent in the cases that we considered under the umbrella of the EPP.  Whether one wants to understand the EPP in terms of location (spatial or temporal) or perspective, the point is that in the cases at hand where subjects do not raise the EPP must be satisfied by a different element which bears the relevant relation to T (not the verb, and may be expressed as a separate EPP-feature).  This is precisely the origin of the intuition of anchoring or range assignment that has been crucial in the discussion of these constructions. It is also the case that this approach would run counter to the idea that the initial XP is in a topic position.  We think this is correct.  Locative or perspective related information is given with respect to the propositional core, i.e. [T vP] and an argument of that EPP-derived predicate.
+
+It appears then that this is a generalised version of the EPP that combines both insights regarding its satisfaction via head and phrasal movement.
+
+
+ 
+ \section{Conclusion} \label{concl}
+In this paper we have investigated a range of cases in Greek where a sentence initial XP is necessary and whose absence leads to ungrammaticality.  This is an unexpected state of affairs for a null subject language.  We have shown that this goes beyond unaccusatives as has been claimed in the past.  Among other things, these XP-V constructions exhibit a clear preference for the imperfective. Given this preference, we assume that the structural representation of the imperfective is more complex than that of the perfective, amounting  to an extra $\phi$ probe in Asp. This $\phi$ probe agrees with the subject in [Spec vP], case licenses it in-situ, and ensures that the subject has no reason to raise. 
+We further argued that these XPs are necessary in order to satisfy the EPP and that it is through EPP satisfaction that they fulfil the functions of anchoring and/or perspective setting.   Our investigation has led us to reconsider the EPP as a general phenomenon and we have proposed that it should be seen as a requirement triggering a dual (head and phrase) dependency and as an argument introducer.  We have proposed that the observed effects follow, in part, at least from this general idea.
+
+
+
+
+
+
+
+
+
+\bibliographystyle{chicago}
+\bibliography{fbib-evi}
+
+
+
+
+
+
+\end{document}
