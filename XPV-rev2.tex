@@ -1,0 +1,1099 @@
+%% =====================================================================
+%%  XPV-rev2.tex  --  FULL REDRAFT
+%%  Sifaki & Tsoulas, "Restrictors, not subjects"
+%%
+%%  READ ME FIRST (George):
+%%  * This is a complete, self-standing redraft, not a patch.  The old
+%%    XPV-rev.tex is untouched.
+%%  * Everything in a coloured box is a note to you.  Four kinds:
+%%      \DEC{...}  ORANGE -- an executive decision only you can take.
+%%      \DAT{...}  GREEN  -- a judgement or paradigm I need from you/Evi.
+%%      \QST{...}  YELLOW -- a theoretical question / thing to push back on.
+%%      \LIT{...}  BLUE   -- a reference gap or a bibliographic action.
+%%    \listoftodos on p.1 gives you the full index of them.  When you are
+%%    done, comment out the four \newcommand lines and they all vanish.
+%%  * The bibliography now calls TWO files: your master fbib-evi.bib plus a
+%%    small xpv-extra.bib supplied alongside this file, which contains only
+%%    entries missing from the master (and ampersand-free aliases for three
+%%    keys whose master keys contain "&", which cannot go inside \citet{}).
+%%    Your old draft had ~15 undefined citations; they are fixed here.
+%%  * Obsolete packages (pgflibraryarrows, pgflibrarysnakes) dropped: they
+%%    were unused and break on current TeX Live.
+%% =====================================================================
+
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{linguex}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{natbib}
+\usepackage{tikz}
+\usepackage{forest}
+\usepackage{xspace}
+\usepackage[stable]{footmisc}
+\usepackage[textsize=footnotesize,colorinlistoftodos,textwidth=\textwidth]{todonotes}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black}
+
+%%
+%% New Commands (inherited)
+%%
+\newcommand{\citeposs}[1]{\citeauthor{#1}'s (\citeyear{#1})}
+\newcommand{\sem}[2][M\!,g]{\mbox{ $[\![ #2 ]\!]^{#1}$}}
+\newcommand{\dbr}[1]{\mbox{ $ [\![ #1 ]\!] $}}
+\newcommand{\setof}[1]{\ensuremath{\left \{ #1 \right \}}}
+\newcommand{\tuple}[1]{\ensuremath{\left \langle #1 \right \rangle }}
+\newcommand{\typa}{{Type 1}\xspace}
+\newcommand{\typb}{{Type 2}\xspace}
+\newcommand{\Hd}{{$\mathcal{H}^{Dep}$}\xspace}
+\newcommand{\Pd}{{$\mathcal{P}^{Dep}$}\xspace}
+
+%% New commands for this draft
+\newcommand{\gen}{\textsc{gen}\xspace}
+\newcommand{\pfv}{\textsc{pfv}\xspace}
+\newcommand{\ipfv}{\textsc{ipfv}\xspace}
+\newcommand{\prs}{\ensuremath{pro_{s}}\xspace}
+\newcommand{\sit}{\ensuremath{\mathsf{s}}\xspace}
+\newcommand{\ty}[1]{\ensuremath{\langle #1 \rangle}}
+
+%% ---- ANNOTATION MACROS.  Comment out the four bodies to hide all notes. ----
+\newcommand{\DEC}[1]{\todo[inline,color=orange!45,caption={DECISION}]{\textbf{DECISION $\rightarrow$ GEORGE:} #1}}
+\newcommand{\DAT}[1]{\todo[inline,color=green!30,caption={DATA}]{\textbf{DATA NEEDED:} #1}}
+\newcommand{\QST}[1]{\todo[inline,color=yellow!45,caption={QUESTION}]{\textbf{QUESTION:} #1}}
+\newcommand{\LIT}[1]{\todo[inline,color=cyan!25,caption={LIT}]{\textbf{LITERATURE:} #1}}
+%% ---- To hide: \renewcommand{\DEC}[1]{} etc. ----
+
+\title{Restrictors, not subjects:\\ preverbal XPs, aspect, and the EPP in Greek}
+\author{Evi Sifaki \\ \small University of Roehampton \and George Tsoulas \\ \small University of York}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\DEC{\textbf{Title.}  Four candidates, in my order of preference:
+(i) \emph{Restrictors, not subjects: preverbal XPs, aspect, and the EPP in Greek} (states the thesis; good for \emph{Glossa}, where titles that name the claim get read);
+(ii) \emph{What the EPP is for: situation restrictors, aspect, and preverbal XPs in Greek};
+(iii) \emph{Anchoring without subjects: preverbal XPs, aspect, and the EPP in Greek};
+(iv) your original, \emph{Non-subject XPs in Greek, aspect, and the EPP} (accurate, but it describes the topic rather than the result).
+I have gone with (i).  Note that if you accept the genericity refinement in \S\ref{prog} the honest title mentions genericity, not aspect --- see that box.}
+
+\begin{abstract}
+\noindent Greek is a consistent null-subject language with free postverbal subjects, and yet there is a large and previously under-described class of finite clauses in which a clause-initial non-subject XP --- typically locative or temporal --- is not merely preferred but obligatory.  We show that this class is far wider than the unaccusative cases on which the literature has concentrated: it takes in unergatives, transitives and object-experiencer predicates, it occurs in embedded as well as root clauses, and it correlates systematically, though not exceptionlessly, with imperfective marking on the verb.  We argue that the initial XP is externally merged in [Spec,T] and that it is there because it is the \emph{restrictor} of the clausal quantifier over situations contributed by Aspect.  The aspectual asymmetry then follows from a difference of \emph{arity}: perfective Aspect is a monadic operator over situation properties, whose situation argument may be saturated by a covert, deictically anchored situation pronoun; generic-habitual imperfective Aspect is dyadic, and its restrictor argument cannot be a singleton, so a covert pronoun will not do and an overt situation-denoting XP must be merged.  The complementary distribution of the initial XP with a preverbal subject falls out because the two compete for a single position and a single semantic role, and the accompanying thetic/categorical contrast falls out from which of them wins.  On this view the EPP on T is neither an unexplained diacritic nor a purely formal edge feature: it is the requirement that the clausal situation quantifier have its restrictor syntactically projected --- exactly parallel to the role of $v$ in introducing the external argument.  We then generalise: the EPP licenses a \emph{dual} dependency, one phrasal and one head-sized, which C may inherit to T independently, yielding a four-way typology in which Greek XP-V, Greek \emph{wh}-questions, residual subject--auxiliary inversion, and Germanic V2 are the four cells.  A consequence is a sharp comparative prediction: XP-V of the Greek type is possible only in languages with syntactic V-to-T movement, since it is head movement of Asp into T that makes [Spec,T] the position in which Aspect's restrictor argument can be discharged.
+\end{abstract}
+
+\noindent\textbf{Keywords:} EPP; situation semantics; viewpoint aspect; genericity; word order; null subject languages; feature inheritance; Greek
+
+\vspace{1em}
+\listoftodos[\textbf{Index of notes, decisions and data requests}]
+\newpage
+
+\tableofcontents
+\newpage
+
+%% =====================================================================
+\section{Introduction}\label{intro}
+%% =====================================================================
+
+The Extended Projection Principle, in its original formulation --- \emph{clauses must have subjects} --- has the peculiar distinction of being at once one of the most robust descriptive generalisations of the field and one of the least understood.  It is not obvious that clauses must have subjects.  It is very much less obvious that clauses in a language which visibly and pervasively tolerates the absence of an overt subject must nevertheless have \emph{something}, and least obvious of all that the something in question should sometimes be an adverbial phrase denoting a place or a time.  Yet that, we will argue, is what Greek shows.
+
+\LIT{An epigraph would earn its keep here and would be in character.  Two candidates: \citet[p.~10]{chomsky:81} on the EPP as ``a principle of the theory of grammar, not reducible to anything else''; or the opening of \citet{holmberg:15}, which you used as the model for the escalation move in the complementiser paper.  I have written the paragraph so that either can be dropped in above it without rewriting.  Your call; I would use Chomsky, because the paper ends by saying what the EPP reduces to.}
+
+The structure of clauses with postverbal nominative subjects in null-subject languages --- sometimes, and misleadingly, called \emph{subject inversion} --- has been studied extensively since \citet{rizzi:82}, and has produced a large and varied analytical literature.\footnote{We will not use the term \emph{inversion} except when reporting the views of others.  Nothing, on the analysis we shall defend, is inverted: the subject does not move and the initial XP is not displaced from anywhere.  We use the neutral label XP-V throughout.  The alternative would be to speak of V2, as \citet{zubizarreta:1998a} does, but we would rather not invite the Germanic comparison at the outset --- though we will invite it, deliberately and on our own terms, in \S\ref{typology}.  On the increasingly plausible view that V2 is an umbrella term for several distinct phenomena, see \citet{holmberg:13} and \citet{jouitteau:07}.}  One subcase, however, has proved consistently more resistant to analysis than the rest.  It is known from the work of \citet{zubizarreta:1998a}, \citet{pinto:97}, \citet{sheehan:06,sheehan:10} and others that postverbal nominatives are in a range of cases \emph{incompatible} with a phonologically empty clause-initial position.  The reason for this incompatibility remains obscure.  The position in question has of course been associated with the EPP for a very long time; but it is still an open question whether the clause-initial, non-subject XPs that turn up in these cases are satisfying the EPP in some form, or whether their presence answers to some other, presumably discourse-related, property of the C--T region.\footnote{The XPs we investigate range from adverbs to prepositional circumstantials, which are known to occupy a range of distinct syntactic positions when they occur lower in the clause \citep{cinque:99}.  We use the umbrella term XP because our concern is not with their internal typology but with the single position they occupy here; compare the practice of \citet{holmberg:00}.  In \S\ref{whatXP} we argue that this apparent heterogeneity is only apparent: the class is exactly the class of expressions that denote properties of situations, which is a semantic and not an accidental characterisation.}
+
+The present paper addresses these constructions in Greek and argues, first, that they come in two types, and second, that only one of the two involves the phenomenon that has interested the literature.  \typa is exemplified in \ref{t11}, \typb in \ref{t21}:
+
+\exg. Irthe o Yiannis\\
+arrive.\pfv.3\textsc{sg} the.\textsc{nom} John.\textsc{nom}\\ \label{t11}
+`John arrived.'
+
+\exg. Edo meletai i Maria\\
+here study.\ipfv.3\textsc{sg} the.\textsc{nom} Maria.\textsc{nom}\\ \label{t21}
+`Maria studies here.'
+
+\typa and \typb contrast systematically in their syntax and in their interpretation.  In \typa the verb is perfective, it must be clause-initial, and the subject does not raise.  The clause receives a thetic (all-focus, presentational) interpretation, and with that interpretation it is confined to root contexts.  \typa clauses have been analysed by \citet{pinto:97}, \citet{alexiadou:07} and \citet{sheehan:06} among others as involving a covert locative, on the strength of the observation that \ref{t11} is naturally understood as \emph{John arrived here}.  In \typb, by contrast, the verb is imperfective, a clause-initial XP is obligatory, the subject again does not raise, and the interpretation is roughly that of a locative or temporal predication over a plurality of occasions.  \typb, unlike \typa, occurs freely in embedded clauses.
+
+This state of affairs raises a cluster of questions.  We state them here in full, because the shape of the answer we shall give depends on seeing that they are not independent of one another:
+
+\begin{itemize}
+\item What is the status of the clause-initial XP?  Is it a derived subject satisfying the EPP on T, or is it somewhere else altogether --- a topic, a frame-setter, a left-peripheral adjunct?
+\item If EPP satisfaction is what brings these XPs into the clause, how does that square with \citeposs{Alexiadou-Anagnostopoulou:98} claim that in Greek the EPP may be satisfied by verb movement alone?  If \typb clauses must satisfy the EPP by merging an XP, what happens in \typa?
+\item What is the origin of the aspectual asymmetry, and --- a question which has not, to our knowledge, been posed --- why is the asymmetry leaky in exactly the way it is?
+\item How do these syntactic properties correlate with the observed interpretations, in particular with the thetic/categorical contrast?
+\item What accounts for the crosslinguistic differences, if there are any?
+\end{itemize}
+
+A full account of all of these is beyond the scope of one paper, and we will say so again when it becomes relevant.  Our claim, however, is that the third and fourth questions are the load-bearing ones and that answering them answers a good deal of the first, second and fifth as well.
+
+\subsection{The proposal, in outline}
+
+We can state the analysis in four steps, and the reader who wants the destination before the route will find it here.
+
+\medskip\noindent\textbf{Step 1: the initial XP is externally merged in [Spec,T].}  It has not moved; there is no position lower in the clause from which it could have come, and in the relevant cases no such position is even available (\S\ref{whatXP}).
+
+\medskip\noindent\textbf{Step 2: [Spec,T] is the restrictor of the clausal situation quantifier.}  Following the situation-semantic tradition of \citet{austin:50}, \citet{barwise-perry:83} and above all \citet{kratzer:89,kratzer:19sep}, we take every finite clause to be evaluated with respect to a \emph{topic situation}, and we take viewpoint aspect to be the head that relates the topic situation to the eventualities described by the vP.  Our claim is that Greek grammaticalises the restrictor of that relation as a syntactic position, namely [Spec,T], and that the EPP on T is precisely the requirement that this restrictor be projected.
+
+\medskip\noindent\textbf{Step 3: the aspectual asymmetry is an asymmetry of arity.}  Perfective Asp is \emph{monadic}: it takes the vP property and returns a property of situations, and its situation argument may be saturated by a covert situation pronoun \prs.  Imperfective Asp, on its generic-habitual construal, is \emph{dyadic}: it introduces a quantifier \gen over situations, and a quantifier needs a restrictor.  A covert situation pronoun denotes a single situation and hence, once shifted to a property, a singleton; and \gen cannot be restricted by a singleton without becoming vacuous.  Hence the restrictor must be overt, and hence the XP.  This is the sense in which the imperfective is ``more complex'' than the perfective --- a claim made in the literature on aspectual splits \citep{coon:13,laka:06,kalin-vanurk:15}, but made there structurally or featurally.  We make it semantically, and thereby derive rather than stipulate its syntactic reflex.
+
+\medskip\noindent\textbf{Step 4: the EPP licenses a dual dependency, and V-to-T is not incidental.}  Head movement of Asp into T is what makes [Spec,T] --- rather than [Spec,Asp] --- the position in which Aspect's restrictor argument is discharged.  The head dependency and the phrasal dependency are therefore not two independent ways of doing the same job, as the disjunctive formulation of the EPP would have it; they are two halves of one job.  Generalising the point to the C--T region and to \citeposs{chomsky:08} feature inheritance yields a four-cell typology of which Greek XP-V is one cell and Germanic V2 another (\S\ref{typology}).
+
+\medskip
+If this is right, then a number of things that have been said about these constructions --- that the XP assigns range to the event \citep{borer:05a}, that it is a discourse or perspective marker \citep{alexiadou:07}, that it is a stage topic \citep{erteschik-shir:97,cohen-erteschik-shir:02}, that it supplies the speaker's coordinates \citep{giorgi:10} --- are all approximately right, and all approximately right for the same reason.  Our contribution is to say what the reason is.
+
+\subsection{Structure of the paper}
+
+Section \ref{Greeksection} lays out the Greek data in some detail, considerably extending the empirical base: predicate classes, positional restrictions, the leaky edges of the aspectual generalisation, and embedded contexts.  We end it with eight numbered generalisations, which are what the rest of the paper is answerable to.  Section \ref{whatXP} argues negatively: the XP is not a topic, not an instance of locative inversion, not a focus, and not moved.  Section \ref{semantics} gives the semantics, with explicit denotations, and derives the generalisations one by one.  Section \ref{syntax} gives the syntax, and asks --- more sceptically than we did in earlier versions of this work --- how much of it is actually needed.  Section \ref{EPP1} turns to the EPP proper and to the typology.  Section \ref{predictions} lists what the account predicts, including what would refute it.  Section \ref{concl} concludes.
+
+%% =====================================================================
+\section{Two types of non-subject XP-V in Greek}\label{Greeksection}
+%% =====================================================================
+
+The literature on word order and information structure in Greek is both robust and varied.\footnote{A representative but far from complete sample: \citet{philippaki:85,Tsimpli:90,alexiadou:99,alexiadou:00,spyropoulos-philippaki:01,georgiafentis:03,sifaki:03,roussou-tsimpli:06,gryllia:08,kechagias:10,haidou:12} and references therein.}  That robustness notwithstanding, the status of the initial non-subject XP in so-called inversion structures has received strikingly little attention by comparison with the other elements of the clause.  \citet{alexiadou:07}, in her study of postverbal nominatives, touches on the matter and offers an analysis in the spirit of \citet{borer:05a}, on which the clause-initial XP (she considers only locatives) functions as an \emph{event binder}, a role that perfective aspect can equally discharge.\footnote{Alexiadou's data overlap with ours but are narrower, because her question is the extent to which inversion can serve as an unaccusativity diagnostic.  We return to her analysis at several points below.}  \citet{alexiadou:96,alexiadou:07} on Greek, \citet{pinto:97} on Italian, \citet{torrego:89} on Spanish and \citet{borer:05a} on Hebrew all confine themselves, in the main, to intransitive predicates.
+
+A property these constructions share across languages is that they answer the question \emph{what happened?}  The whole clause is therefore new information, and the whole clause is in focus; this is what a presentational or wide-focus interpretation amounts to.  It is further generally claimed that only eventive unaccusatives participate, as in \ref{alexiadou6}:
+
+\exg. erhotan/irthe o Yiannis\\
+come.\ipfv.3\textsc{sg}/come.\pfv.3\textsc{sg} the.\textsc{nom} John.\textsc{nom}\\ \label{alexiadou6}
+`John was coming / John came.'
+
+Unaccusatives are grammatical in V1 orders in both aspects.  As noted, the interpretation of the perfective is \emph{John arrived \textbf{here}}: either because a verb like \emph{come} selects a possibly empty goal complement, or because there is an empty locative phrase with that content.  The second option is the one generally assumed, and raising the empty locative then provides a way of satisfying the EPP on T.
+
+The imperfective, however, behaves differently, and this is the observation the whole paper turns on.  With the imperfective the wide-focus interpretation is simply unavailable; what remains is a habitual reading, which requires support:
+
+\exg. Sti filaki dhen erhotan kanenas na me di\\
+in.the prison \textsc{neg} come.\ipfv.3\textsc{sg} nobody \textsc{subj} me see.3\textsc{sg}\\
+`In prison, nobody would come to see me.'
+
+\exg. erhotan o Yiannis\\
+come.\ipfv.3\textsc{sg} the.\textsc{nom} John.\textsc{nom}\\ \label{george20}
+`John was coming.'
+
+\ref{george20} without an initial XP is interpretable only as verum focus --- focus on the polarity or on the verb --- and the intonation marks it accordingly.
+
+\QST{This is the first place where the standard description and our own diverge, and it is worth being explicit about it in the final text.  The received description says: \emph{the imperfective blocks the wide-focus reading}.  Our description will be: \emph{the imperfective is ambiguous between a progressive and a generic-habitual construal, and only the latter requires an initial XP; V1 is fine on the progressive construal, and what looks like ``verum focus rescue'' is in fact the progressive parse}.  If \ref{george20} is acceptable out of the blue as an answer to \emph{ti kani o Yiannis?} `what is John doing?' --- i.e.\ `John is on his way' --- then our description is right and the received one is wrong.  See the DATA box in \S\ref{prog}, which I regard as the single most important empirical test in the paper.}
+
+\citet{alexiadou:96} further claims that the presupposed locative contributes telicity to the unaccusative predicate.  Since unaccusatives express change of state, they are compatible with V1 orders; unergatives in general lack such an interpretation, and can only achieve it with a preverbal locative when the verb is imperfective \citep[p.~45, fn.~11]{alexiadou:96}.
+
+There is, then, scope to investigate the distribution of the clause-initial XP well beyond the intransitives, and to establish more firmly both the nature of the aspectual restriction and the reason for the requirement that the XP be clause-initial.  We turn to that now.
+
+\subsection{Aspectual restrictions across predicate classes}\label{predclasses}
+
+\subsubsection{Object-experiencer predicates}
+
+There are experiencer predicates which, when the verb is imperfective, require a temporal or locative XP preverbally.\footnote{In Greek, viewpoint aspect is grammatically encoded on the verbal paradigm and distinguishes perfective from imperfective.  The perfective is normally interpreted as bounded and the imperfective as unbounded, yielding habitual, progressive and generic readings; see \citet{mozer:94,tsimpli-papadopoulou:05,giannakidou:09} inter alios.}  Consider \ref{roussou-tsimpli7} and \ref{roussou-tsimpli8}:\footnote{For the view that inversion of the object in experiencer predicates can satisfy the EPP, see \citet{landau:10}.}
+
+\exg. *(pada/tote) andipathousa/*adipathisa tus kavgades\\
+always/then detest.\ipfv.1\textsc{sg}/detest.\pfv.1\textsc{sg} the.\textsc{acc} quarrels.\textsc{acc}\\ \label{roussou-tsimpli7}
+`I have always detested quarrels / Then I detested quarrels.'
+
+\exg. *(stin Karaiviki/pada) fovomoun/*fovithika tis katejides\\
+in.the Caribbean/always fear.\ipfv.1\textsc{sg}/fear.\pfv.1\textsc{sg} the.\textsc{acc} storms.\textsc{acc}\\ \label{roussou-tsimpli8}
+`In the Caribbean / always, I feared the storms.'
+
+\hfill (adapted from \citealt[p.~348]{roussou-tsimpli:06})
+
+Two things are going on in these examples and it is important to keep them apart.  The obligatoriness of the initial XP with the imperfective is our phenomenon.  The star on the perfective forms is not: it reflects the general awkwardness of perfective marking on Greek stative predicates outside inchoative or delimited construals, and it would persist with or without an initial XP.
+
+\QST{Confirm this: is \emph{Xthes to vradi fovithika tis katejides} `Last night I got frightened of the storms' acceptable, with the inchoative reading?  If so, the perfective star in \ref{roussou-tsimpli7}--\ref{roussou-tsimpli8} is about Aktionsart, not about our construction, and we should say so in a footnote and move on.  As the examples stand in the old draft, a referee will read them as evidence that the perfective is categorically excluded, which is not what we want to claim.}
+
+These predicates further do not allow an overt postverbal pronominal subject; only a null subject is possible:\footnote{Such null-subject cases give a further reason for thinking \emph{subject inversion} a misnomer: there is no subject in evidence to invert.}
+
+\exg. *(stin Karaiviki/pada) fovomoun/*fovithika ego tis katejides\\
+in.the Caribbean/always fear.\ipfv.1\textsc{sg}/fear.\pfv.1\textsc{sg} I.\textsc{nom} the.\textsc{acc} storms.\textsc{acc}\\ \label{roussou-tsimpli9}
+`In the Caribbean / always, I feared the storms.'
+
+We return to this datum in \S\ref{pronouns}, where we argue that it is a genuine argument for the low-licensing analysis of \S\ref{syntax} and not, as it might appear, an idiosyncrasy of experiencer predicates.
+
+\subsubsection{Unergatives}
+
+Most researchers have argued that these structures involve intransitive predicates, and \citet{pinto:97} observes that a specific set of Italian unergatives require a clause-initial XP: \emph{studiare} `study', \emph{dormire} `sleep', \emph{giocare} `play', \emph{camminare} `walk'.  The Greek counterparts pattern alike:
+
+\exg. \#meletaei/\#meletise/\#meletouse i Maria\\
+study.\ipfv.\textsc{prs}.3\textsc{sg}/study.\pfv.\textsc{pst}.3\textsc{sg}/study.\ipfv.\textsc{pst}.3\textsc{sg} the.\textsc{nom} Mary.\textsc{nom}\\ \label{unergatives1}
+`Mary is studying / studied / was studying.'
+
+\ref{unergatives1} is felicitous only with verum focus.  For a wide-focus interpretation a temporal or locative XP is required clause-initially:
+
+\exg. kathe mera/se afto to grafeio meletaei/meletouse i Maria\\
+every day/in this the office study.\ipfv.\textsc{prs}/\ipfv.\textsc{pst}.3\textsc{sg} the.\textsc{nom} Mary.\textsc{nom}\\ \label{unergatives2}
+`Every day / in this office, Mary studies / was studying.'
+
+The XP cannot appear clause-finally \ref{unerg3}, and although it may intervene between verb and subject \ref{unerg42}, the result is no longer wide focus:
+
+\exg. *meletaei/*meletouse i Maria kathe mera\\
+study.\ipfv.\textsc{prs}/\ipfv.\textsc{pst}.3\textsc{sg} the.\textsc{nom} Mary.\textsc{nom} every day\\ \label{unerg3}
+`Every day, Mary studies / was studying.'
+
+\exg. \#meletaei/\#meletouse kathe mera i Maria\\
+study.\ipfv.\textsc{prs}/\ipfv.\textsc{pst}.3\textsc{sg} every day the.\textsc{nom} Mary.\textsc{nom}\\ \label{unerg42}
+`Every day, Mary studies / was studying.'
+
+\ref{unerg42} is acceptable with narrow focus, on the XP or (less readily) on the subject.  The contrast in diacritic between \ref{unerg3} and \ref{unerg42} is not an accident and we will derive it in \S\ref{mapping}: the postverbal, preverbal-of-subject position is inside the nuclear scope, where focus can supply a restriction that the syntax has failed to supply; the clause-final position cannot even do that.
+
+Perfective aspect and a clause-initial XP, by contrast, do not sit well together:
+
+\exg. *to apogevma/se afto to grafeio meletise i Maria\\
+in.the afternoon/in this the office study.\pfv.3\textsc{sg} the.\textsc{nom} Mary.\textsc{nom}\\ \label{unerg2}
+`Mary studied in the afternoon / in this office.'
+
+The same picture holds for the other verbs in Pinto's set:
+
+\exg. \#koimatai/\#kimithike/*kimotan i Maria\\
+sleep.\ipfv.\textsc{prs}/sleep.\pfv.\textsc{pst}/sleep.\ipfv.\textsc{pst}.3\textsc{sg} the.\textsc{nom} Mary.\textsc{nom}\\ \label{unergative4}
+`Mary is sleeping / slept / was sleeping.'
+
+\exg. meta to sxoleio/safto to krevati/edo koimatai/kimotan i Maria\\
+after the school/in.this the bed/here sleep.\ipfv.\textsc{prs}/\ipfv.\textsc{pst}.3\textsc{sg} the.\textsc{nom} Mary.\textsc{nom}\\ \label{unergative3}
+`After school / in this bed / here, Mary sleeps / was sleeping.'
+
+The XP cannot appear anywhere else:
+
+\exg. *koimatai/*kimotan meta to sxoleio/safto to krevati/edo i Maria\\
+sleep.\ipfv.\textsc{prs}/\ipfv.\textsc{pst}.3\textsc{sg} after the school/in.this the bed/here the.\textsc{nom} Mary.\textsc{nom}\\ \label{unergative35}
+`After school / in this bed / here, Mary sleeps / was sleeping.'
+
+\exg. *koimatai/*kimotan i Maria meta to sxoleio/safto to krevati/edo\\
+sleep.\ipfv.\textsc{prs}/\ipfv.\textsc{pst}.3\textsc{sg} the.\textsc{nom} Mary.\textsc{nom} after the school/in.this the bed/here\\ \label{unergative36}
+`After school / in this bed / here, Mary sleeps / was sleeping.'
+
+And with the perfective the initial XP is again degraded, though \ref{unergative31} is better than \ref{unerg2}:
+
+\exg. \#meta to sxoleio/\#se afto to krevati/\#edo kimithike i Maria\\
+after the school/in this the bed/here sleep.\pfv.3\textsc{sg} the.\textsc{nom} Mary.\textsc{nom}\\ \label{unergative31}
+`After school / in this bed / here, Mary slept.'
+
+\emph{pezo} `play' shows the same aspectual profile:
+
+\exg. *pezei/\#epexe/*epeze i Maria\\
+play.\ipfv.\textsc{prs}/play.\pfv.\textsc{pst}/play.\ipfv.\textsc{pst}.3\textsc{sg} the.\textsc{nom} Mary.\textsc{nom}\\ \label{unergative5}
+`Mary is playing / played / was playing.'
+
+\exg. ta apogevmata/sto dialeima pezei/epeze i Maria\\
+the.\textsc{acc} afternoons/in.the break play.\ipfv.\textsc{prs}/\ipfv.\textsc{pst}.3\textsc{sg} the.\textsc{nom} Mary.\textsc{nom}\\ \label{unergative6}
+`Mary plays / was playing in the afternoons / in the break.'
+
+\exg. *ta apogevmata/\#sto dialeima epexe i Maria\\
+the.\textsc{acc} afternoons/in.the break play.\pfv.3\textsc{sg} the.\textsc{nom} Mary.\textsc{nom}\\ \label{unergative7}
+`Mary played in the afternoons / in the break.'
+
+The contrast within \ref{unergative7} deserves comment, because it is more informative than it looks.  The plural temporal XP \emph{ta apogevmata} `the afternoons' denotes a plurality of occasions, and combines naturally with the imperfective on a habitual construal.  With the perfective it is flatly out.  The singular \emph{sto dialeima} `in the break' is merely infelicitous.  The gradience is exactly what an account based on restrictor cardinality predicts, and we will come back to it in \S\ref{pfvxp}.
+
+As before, with the imperfective the XP cannot appear elsewhere:
+
+\exg. *pezei/*epeze sto dialeima i Maria\\
+play.\ipfv.\textsc{prs}/\ipfv.\textsc{pst}.3\textsc{sg} in.the break the.\textsc{nom} Mary.\textsc{nom}\\ \label{unergative61}
+`Mary plays / was playing in the break.'
+
+\exg. *pezei/*epeze i Maria sto dialeima\\
+play.\ipfv.\textsc{prs}/\ipfv.\textsc{pst}.3\textsc{sg} the.\textsc{nom} Mary.\textsc{nom} in.the break\\ \label{unergative62}
+`Mary plays / was playing in the break.'
+
+All the imperfective XP-V structures above encode a habitual reading.  There are also XP-V structures with a generic interpretation; \emph{klevo} `steal' in the third plural is a case in point:\footnote{\citet{spyropoulos-philippaki:01} show that the imperfective, besides habitual and progressive readings, supports generic time reference, as in \ref{spyropoulos2}:
+
+\exg. sta Kalavrita ftiaxnoun kalo tiri\\
+in.the Kalavrita make.\ipfv.3\textsc{pl} good.\textsc{acc} cheese.\textsc{acc}\\ \label{spyropoulos2}
+`They make good cheese in Kalavrita.'
+
+\noindent Following \citet{cardinaletti-starke:99}, they argue that a generic reading of \ref{spyropoulos2} requires a \emph{range restrictor}: an XP such as \emph{sta Kalavrita} restricting the set of individuals the null subject may denote.  The intuition is exactly right, and our proposal can be read as a way of saying what \emph{range restriction} is: it is restriction of the quantifier over situations, which restricts the individuals derivatively, by restricting the situations they are parts of.}
+
+\exg. *(edo) klevoun/eklevan\\
+here steal.\ipfv.\textsc{prs}/\ipfv.\textsc{pst}.3\textsc{pl}\\ \label{gen1}
+`People steal / used to steal here.'
+
+\exg. *klevoun/eklevan edo\\
+steal.\ipfv.\textsc{prs}/\ipfv.\textsc{pst}.3\textsc{pl} here\\ \label{gen2}
+`People steal / used to steal here.'
+
+\subsubsection{Transitives}
+
+It is not only unaccusatives and unergatives that participate.  As \ref{roussou-tsimpli7}--\ref{roussou-tsimpli8} already showed, transitive verbs are subject to the same restriction.  \emph{ftiaxno} `make' is representative:
+
+\exg. \#ftiaxnei/\#eftiaxe/\#eftiaxne kulurakia i Maria\\
+make.\ipfv.\textsc{prs}/make.\pfv.\textsc{pst}/make.\ipfv.\textsc{pst}.3\textsc{sg} cookies.\textsc{acc} the.\textsc{nom} Mary.\textsc{nom}\\ \label{evi15}
+`Mary makes / made / was making cookies.'
+
+Unlike \ref{evi14}, \ref{evi15} receives the same kind of interpretation we saw for the imperfective in \ref{alexiadou6}, namely verum focus, with main stress on the initial verb:
+
+\exg. stis giortes ftiaxnei/\#eftiaxe/eftiaxne kulurakia i Maria\\
+in.the festivities make.\ipfv.\textsc{prs}/\pfv.\textsc{pst}/\ipfv.\textsc{pst}.3\textsc{sg} cookies.\textsc{acc} the.\textsc{nom} Mary.\textsc{nom}\\ \label{evi14}
+`At the festive season, Mary makes / was making cookies.'
+
+The transitive follows the same positional pattern.  With the imperfective the XP must be clause-initial:
+
+\exg. *ftiaxnei/*eftiaxne stis giortes kulurakia i Maria\\
+make.\ipfv.\textsc{prs}/\ipfv.\textsc{pst}.3\textsc{sg} in.the festivities cookies.\textsc{acc} the.\textsc{nom} Mary.\textsc{nom}\\ \label{evi141}
+`At the festive season, Mary makes / was making cookies.'
+
+\exg. *ftiaxnei/*eftiaxne kulurakia stis giortes i Maria\\
+make.\ipfv.\textsc{prs}/\ipfv.\textsc{pst}.3\textsc{sg} cookies.\textsc{acc} in.the festivities the.\textsc{nom} Mary.\textsc{nom}\\ \label{evi142}
+`At the festive season, Mary makes / was making cookies.'
+
+Taken together, these paradigms show that perfective clauses are, in general, not compatible with a clause-initial XP --- the results range from infelicity to ungrammaticality --- while imperfective clauses in general \emph{require} a locative or temporal XP clause-initially, and that in the latter case the most natural reading is one in which nothing is foregrounded.
+
+\DAT{Three additions to \S\ref{predclasses} would materially strengthen the empirical section, and none of them is expensive.
+(a) \textbf{Unaccusatives other than verbs of arrival}, in the imperfective, to show the pattern is not about unaccusativity: e.g.\ \emph{*(kathe himona) epefte hioni} `every winter fell snow'.
+(b) \textbf{A ditransitive}, to show it is not about the number of arguments: e.g.\ \emph{*(kathe Kiriaki) edine leftá stus ftohous i Maria}.
+(c) \textbf{A passive}, which no one in this literature seems to have tried: \emph{*(edo) htizodan spitia} `here were built houses'.
+If (c) works the paper gains an argument, because passives have no external argument in [Spec,$v$P] at all, and any analysis that makes the phenomenon turn on the external argument being trapped will have trouble with it.  This bears directly on the DECISION box in \S\ref{phiprobe}.}
+
+\subsection{Perfective clauses that nonetheless require an initial XP}\label{pfvfacts}
+
+The generalisation as stated so far is too clean, and the cases that spoil it are, we shall argue, the most revealing in the paradigm.  \citet{pinto:97} showed for Italian that unaccusatives such as \emph{vivere} `live' and \emph{morire} `die' require an overt clause-initial locative.  Greek behaves alike, and here the verb is perfective:
+
+\exg. *(edo) ezise/zouse i Maria Kallas\\
+here live.\pfv.\textsc{pst}/live.\ipfv.\textsc{pst}.3\textsc{sg} the.\textsc{nom} Maria Kallas.\textsc{nom}\\ \label{greek2}
+`Maria Kallas lived / was living here.'
+
+\emph{zo} `live' may appear in the past in both aspects, at least in \ref{greek2}, where the referent is deceased.  \emph{petheno} `die', being non-durative and happening once, allows only the past perfective, unless a temporal XP supplies the specific time:\footnote{The verb can also be used in the future perfective in narrative contexts, for vividness: \emph{To 1977 tha pethanei i Maria Kallas} `In 1977 Maria Kallas will die'.}
+
+\exg. *(edo) pethane/*pethenei i Maria Kallas\\
+here die.\pfv.\textsc{pst}/die.\ipfv.\textsc{prs}.3\textsc{sg} the.\textsc{nom} Maria Kallas.\textsc{nom}\\ \label{greek255}
+`Maria Kallas died / is dying here.'
+
+\exg. to 1977 pethenei i Maria Kallas\\
+the 1977 die.\ipfv.\textsc{prs}.3\textsc{sg} the.\textsc{nom} Maria Kallas.\textsc{nom}\\ \label{greek256}
+`Maria Kallas died in 1977.' \emph{(narrative present)}
+
+\footnote{\emph{edo} can also be used concessively, as in \emph{edo pethenei i dimokratia kai theloun dimopsifisma} `Democracy is dying and they want a referendum'.  This use is not at issue here, but see the QUESTION box in \S\ref{whatXP} --- it may not be as irrelevant as it looks.}
+
+\citet{sitaridou:12} draws attention to a further case, ungrammatical without an initial temporal adverb:
+
+\exg. xthes ipevale i Maria tin paretisi tis\\
+yesterday submit.\pfv.3\textsc{sg} the.\textsc{nom} Mary.\textsc{nom} the.\textsc{acc} resignation.\textsc{acc} her\\ \label{sitaridou3}
+`Mary submitted her resignation yesterday.'
+
+\exg. *ipevale i Maria tin paretisi tis\\
+submit.\pfv.3\textsc{sg} the.\textsc{nom} Mary.\textsc{nom} the.\textsc{acc} resignation.\textsc{acc} her\\ \label{sitaridou4}
+`Mary submitted her resignation.'
+
+\hfill \citep[p.~583]{sitaridou:12}
+
+And, as elsewhere, the adverb cannot be saved by appearing clause-finally, which shows that what is at stake is the emptiness of the initial position and not the presence of the adverb as such:
+
+\exg. *ipevale i Maria tin paretisi tis xthes\\
+submit.\pfv.3\textsc{sg} the.\textsc{nom} Mary.\textsc{nom} the.\textsc{acc} resignation.\textsc{acc} her yesterday\\ \label{sitaridou5}
+`Mary submitted her resignation yesterday.'
+
+There is thus a genuine residue.  The imperfective requires an initial XP; the perfective in general disallows one; but a subclass of perfective clauses \emph{also} requires one.  The old draft treated this residue as a semi-lexical matter --- ``unless the verb's meaning necessitates some further specification of when the event took place''.  That will not do as an analysis, and a \emph{Glossa} referee will say so.  We take a different line in \S\ref{pfvxp}: the perfective residue is not a counterexample to the aspectual generalisation but the direct confirmation of its underlying cause, because it shows that what is really at stake is whether the covert occupant of [Spec,T] can be \emph{identified}, and that aspect is only one of the two things that bear on this.
+
+\DAT{This is where I most need judgements, because the analysis in \S\ref{pfvxp} predicts three things and I cannot check any of them.
+(i) \emph{Pethane o Yiannis} `John died', V1 perfective, out of the blue, on the news-announcing reading.  I predict \textbf{good}.  If it is good, then the star on \ref{greek255} is about \emph{Maria Kallas} being a discourse-old, long-dead individual, not about \emph{petheno}, and the whole class of Pinto verbs needs re-describing.
+(ii) \emph{Ipevale kapios tin paretisi tou} `someone submitted his resignation', V1 perfective with an indefinite subject.  I predict \textbf{good}, against \ref{sitaridou4}.  If so, \ref{sitaridou4} is out because \emph{i Maria} plus the possessive \emph{tis} make the subject discourse-old, so nothing can be presented, so no thetic parse is available.
+(iii) \emph{Xthes to apogevma meletise i Maria} `Yesterday afternoon studied Maria', perfective with a \emph{definite, anchored} temporal XP, against the starred \ref{unerg2} with bare \emph{to apogevma}.  I predict \textbf{good}.
+If (i)--(iii) come out as predicted, \S\ref{pfvxp} is solid and the paper has a real result where the old draft had a hand-wave.  If they do not, tell me and we retreat to a weaker claim, which I sketch in the same section.}
+
+\subsection{Embedded contexts}\label{embedded}
+
+The XP-V pattern is attested in embedded clauses, where the XP appears immediately after the complementiser and the same aspectual restrictions obtain:
+
+\exg. Mou eipe oti edo meletaei/\#meletise/meletouse i Maria\\
+me.\textsc{gen} said.3\textsc{sg} that here study.\ipfv.\textsc{prs}/\pfv.\textsc{pst}/\ipfv.\textsc{pst}.3\textsc{sg} the.\textsc{nom} Mary.\textsc{nom}\\ \label{evi20}
+`He told me that Mary studies / studied / was studying here.'
+
+\exg. Mou eipe oti edo koimatai/\#kimithike/kimotan i Maria\\
+me.\textsc{gen} said.3\textsc{sg} that here sleep.\ipfv.\textsc{prs}/\pfv.\textsc{pst}/\ipfv.\textsc{pst}.3\textsc{sg} the.\textsc{nom} Mary.\textsc{nom}\\ \label{evi21}
+`He told me that Mary sleeps / slept / was sleeping here.'
+
+Transitives behave alike:
+
+\exg. mou eipe oti sto parko evgaze/\#evgale/vgazei to skilo volta i Maria\\
+me.\textsc{gen} said.3\textsc{sg} that in.the park take.out.\ipfv.\textsc{pst}/\pfv.\textsc{pst}/\ipfv.\textsc{prs}.3\textsc{sg} the.\textsc{acc} dog.\textsc{acc} walk the.\textsc{nom} Mary.\textsc{nom}\\ \label{embedded1}
+`He told me that Mary was taking / took / is taking the dog for a walk in the park.'
+
+\exg. *mou eipe oti evgaze/vgazei sto parko to skilo volta i Maria\\
+me.\textsc{gen} said.3\textsc{sg} that take.out.\ipfv.\textsc{pst}/\ipfv.\textsc{prs}.3\textsc{sg} in.the park the.\textsc{acc} dog.\textsc{acc} walk the.\textsc{nom} Mary.\textsc{nom}\\ \label{embedded11}
+`He told me that Mary was taking / is taking the dog for a walk in the park.'
+
+\exg. *mou eipe oti evgaze/vgazei to skilo volta sto parko i Maria\\
+me.\textsc{gen} said.3\textsc{sg} that take.out.\ipfv.\textsc{pst}/\ipfv.\textsc{prs}.3\textsc{sg} the.\textsc{acc} dog.\textsc{acc} walk in.the park the.\textsc{nom} Mary.\textsc{nom}\\ \label{embedded12}
+`He told me that Mary was taking / is taking the dog for a walk in the park.'
+
+\exg. mou eipe pos sto Parisi agorase spiti i Maria\\
+me.\textsc{gen} said.3\textsc{sg} that in.the Paris buy.\pfv.3\textsc{sg} house.\textsc{acc} the.\textsc{nom} Mary.\textsc{nom}\\ \label{embedded22}
+`He told me that Mary bought a house in Paris.'
+
+\exg. Mou eipe oti/pos edo ezise i Maria Kallas\\
+me.\textsc{gen} said.3\textsc{sg} that here live.\pfv.3\textsc{sg} the.\textsc{nom} Maria Kallas.\textsc{nom}\\ \label{embeddedpinto}
+`He told me that Maria Kallas lived here.'
+
+\exg. *Mou eipe oti/pos ezise i Maria Kallas edo\\
+me.\textsc{gen} said.3\textsc{sg} that live.\pfv.3\textsc{sg} the.\textsc{nom} Maria Kallas.\textsc{nom} here\\ \label{embeddedpinto2}
+`He told me that Maria Kallas lived here.'
+
+The embedded pattern is very close to the root pattern.  In all of the above the XP cannot appear anywhere in the embedded clause except immediately after the complementiser.  With the exception of \ref{embedded22} and \ref{embeddedpinto}, the aspectual restrictions carry over: \ref{embedded22} permits the perfective because the reported content is the episodic, telic buying of a house, and \ref{embeddedpinto} because Kallas is dead.  These two are of course instances of the perfective residue of \S\ref{pfvfacts}, and they will receive the same treatment.
+
+That the pattern obtains in both root and embedded clauses is an argument, and a strong one, against analysing it as anything like locative inversion, which is a root phenomenon.\footnote{On locative inversion see, non-exhaustively, \citet{bresnan:94}, \citet{bresnan-kanerva:89} and \citet{levin-rappaport:95}.}  It is also, in a way we will exploit in \S\ref{root}, a diagnostic that distinguishes the two Types: \typa, on its thetic reading, is a root phenomenon; \typb is not.  Any account which treats the two as a single construction owes an explanation of that difference.  Ours falls out.
+
+\subsection{The XP and the preverbal subject}\label{compdist}
+
+The final piece of the descriptive picture is the relation between the initial XP and preverbal subjects.  \citet{Alexiadou-Anagnostopoulou:98} argue that in Greek the EPP may be satisfied by verb movement alone, which in conjunction with the assumption that preverbal subjects are topics \citep{philippaki:85,Tsimpli:90} would mean that [Spec,T] is systematically unavailable, or at any rate systematically unused, in Greek.  We think this cannot be maintained in its strong form.  Consider:
+
+\ex. \label{sxolio1}
+\exg. Sto sxolio o Yiannis filise ti Maria\\
+at school the.\textsc{nom} John.\textsc{nom} kiss.\pfv.3\textsc{sg} the.\textsc{acc} Mary.\textsc{acc}\\
+`John kissed Mary at school.'
+
+If the only position available to \emph{o Yiannis} here is a topic position, and if \emph{sto sxolio} is likewise a topic, then \ref{sxolio1} must have a multiple-topic interpretation: \emph{as for (what happened at) school, as for Yiannis, he kissed Mary}.  That reading is, on the most charitable construal, far-fetched.  Interpretively \ref{sxolio1} is not far from \ref{sxolio2}, where no such multiple topicalisation is in question:
+
+\ex. \label{sxolio2}
+\exg. Sto sxolio filise o Yiannis ti Maria\\
+at school kiss.\pfv.3\textsc{sg} the.\textsc{nom} John.\textsc{nom} the.\textsc{acc} Mary.\textsc{acc}\\
+`John kissed Mary at school.'
+
+We take this as evidence that [Spec,T] is, in principle, still available to the subject in Greek.
+
+\DAT{\textbf{This is the crux of the paper and I cannot settle it.}  Everything in \S\ref{syntax} turns on the status of the imperfective counterpart of \ref{sxolio1}, with the subject between the XP and the verb:
+
+\medskip
+\hspace*{2em}(a) \emph{Edo i Maria meletai.} \quad `here the Maria studies'\\
+\hspace*{2em}(b) \emph{Se afto to grafeio i Maria meletai kathe mera.}\\
+\hspace*{2em}(c) \emph{Stis giortes i Maria ftiaxnei kulurakia.}
+
+\medskip
+Three possible verdicts, with sharply different consequences.
+
+\textsc{Verdict A --- they are ungrammatical.}  Then the subject really is trapped low in the imperfective, and we need the aspectual $\varphi$-probe of \S\ref{phiprobe} to trap it.  The Kalin \& van Urk-inspired machinery earns its keep and stays in the paper.
+
+\textsc{Verdict B --- they are grammatical but with a distinct, categorical, ``as-for-Maria'' interpretation, while \emph{Edo meletai i Maria} is thetic.}  This is what I expect, and it is the \emph{best} outcome for us: it directly confirms the central claim, because it shows the subject and the XP competing for one restrictor slot with exactly the interpretive consequence predicted (\S\ref{thetic}).  But it also means the $\varphi$-probe traps nothing, and \S\ref{phiprobe} should be cut to a paragraph.
+
+\textsc{Verdict C --- they are grammatical and interpretively indistinguishable from \emph{Edo meletai i Maria}.}  Then both the semantic and the syntactic halves of the account are in trouble, and we would have to say that the XP and the subject occupy different positions after all.  I do not expect this, but it is the falsifier and we should say so in print.
+
+Please run these past two or three speakers who have not seen the paper, and ask specifically about the \emph{as-for} paraphrase rather than about acceptability alone.  Nothing else in the draft is as consequential.}
+
+\subsection{The generalisations}\label{summary}
+
+We collect the descriptive results.  These eight statements are what the analysis has to deliver, and we will refer back to them by number.
+
+\begin{description}
+\item[\textsc{g1}] A finite Greek clause with an imperfective verb and a postverbal subject requires an overt clause-initial locative or temporal XP.
+\item[\textsc{g2}] The XP must be clause-initial.  Postverbal placement is ungrammatical clause-finally and yields narrow focus between V and S.
+\item[\textsc{g3}] With a perfective verb the clause-initial XP is in general excluded, and the clause is verb-initial.
+\item[\textsc{g4}] \textsc{g3} has systematic exceptions: perfective clauses whose eventuality cannot be located with respect to the here-and-now require an initial XP, and that XP must be definite and anchoring.
+\item[\textsc{g5}] The pattern is independent of predicate class: unaccusatives, unergatives, transitives and object-experiencers all show it.
+\item[\textsc{g6}] The pattern occurs in embedded clauses, immediately after the complementiser, with the same restrictions.  The thetic interpretation of verb-initial perfectives, by contrast, is confined to root clauses.
+\item[\textsc{g7}] The XP is in complementary distribution with a preverbal subject occupying the same position; when the subject occupies it, the interpretation is categorical rather than thetic.
+\item[\textsc{g8}] Overt postverbal strong pronominal subjects are excluded in these structures.
+\end{description}
+
+This is a difficult set of properties for any assumptions we know of, and it is worth saying exactly why before proposing anything.  Suppose one holds that the subject does not raise because verb movement satisfies the EPP.  Then, to motivate the initial XP, one appeals to \emph{range assignment} or \emph{range restriction};\footnote{Different authors have given this element different names: range assigners for \citet{borer:05a}, discourse or perspective markers for \citet{alexiadou:07}, stage topics for \citet{cohen-erteschik-shir:02}, the speaker's coordinates for \citet{giorgi:10}.  The convergence of these labels is not accidental, and we take it to be evidence that they are all pointing at one thing.} but range assignment can equally be effected by raising the subject, so we are back to asking why the subject stays low.  Suppose instead that the locative or temporal XP is there to satisfy the EPP.  Same question: why does the subject not do it?  Suppose, third, that a situation-related element must sit in a topic or topic-like position for the required interpretation to arise --- some sort of overtly realised \emph{stage topic} \citep{basilico:03}.  Combined with EPP satisfaction by V-to-T this looks promising, and it is the best of the available stories.  It nonetheless runs into two difficulties.  Stage topics are notoriously often null and recoverable from the discourse situation; if the XP's presence is not an EPP matter, the requirement that it be \emph{overt} is left unexplained.  And it remains unclear why the subject cannot raise and appear between the stage topic and the verb --- unless there is nowhere for it to go, which is the position \ref{sxolio1} appears to tell against.
+
+The account we now give says that all three of these approaches are seeing part of the same thing.  The initial XP is in [Spec,T]; it is there for EPP reasons; and the EPP requirement it satisfies is not a formal diacritic but the requirement that a quantifier have a restrictor.  That is why it must be overt, why it must be situation-denoting, why it alternates with the subject, and why the alternation has the interpretive consequence it has.
+
+%% =====================================================================
+\section{What the initial XP is not}\label{whatXP}
+%% =====================================================================
+
+Before building, some clearing of ground.  Four analyses of the initial XP are available off the shelf, and we reject all four, though not all for the same kind of reason.
+
+\subsection{Not locative inversion}
+
+English locative inversion (\emph{Into the room walked a man}) is a root phenomenon, or at best a phenomenon of a very restricted class of embedded contexts.  Greek XP-V, as \S\ref{embedded} showed, occurs freely under \emph{oti} and \emph{pos}.  Greek XP-V is moreover not restricted to unaccusatives, whereas locative inversion notoriously is; and Greek XP-V permits temporal as well as locative XPs, whereas locative inversion permits, as the name suggests, only locatives.  The two phenomena are not the same, and we will not discuss locative inversion further.
+
+\subsection{Not a topic}\label{nottopic}
+
+The stage-topic analysis is the most serious rival, and it has a real intuition behind it: these XPs do set a scene.  Three considerations tell against it.
+
+First, obligatoriness.  Topics --- including stage topics --- are canonically optional and canonically recoverable from context; that is close to what makes them topics.  The XPs at issue are obligatory to the point of ungrammaticality, and they are obligatory even where the context supplies the relevant scene perfectly well.  A theory on which they are topics has to add a stipulation that this particular kind of topic must be pronounced, and the stipulation does no other work.
+
+Second, position relative to the complementiser.  Greek clause-internal topics, on standard cartographic assumptions \citep{rizzi:97}, sit in the C-domain and precede or follow other left-peripheral material with characteristic freedom.  The XPs here sit immediately after \emph{oti/pos} and, crucially, cannot be separated from the verb by a subject (pending the DATA box in \S\ref{compdist}), which is not how topics behave.
+
+Third, and most tellingly, the interpretation.  If the XP were a topic, then \ref{sxolio1} with an additional preverbal subject would be a multiple-topic structure, and we saw that its interpretation is nothing of the sort.
+
+\QST{An honest referee will press here, and we should pre-empt it.  Clitic left dislocation in Greek diagnoses topichood rather well: a CLLDed object is resumed by a clitic, and CLLD is iterable.  Two diagnostics worth running: (i) can the initial XP be iterated (\emph{Edo stis giortes ftiaxnei kulurakia i Maria})?  A topic analysis says yes; we say no, or at most one of the two is in [Spec,T] and the other is genuinely a frame-setter in the C-domain.  (ii) Does the initial XP show connectivity/reconstruction into any lower position?  We say it cannot, because there is no lower position.  I have written \S\ref{notmoved} on the assumption that both come out our way; if (i) comes out the other way we need to allow an additional frame position above TP, which is not fatal but does need saying.}
+
+\subsection{Not a focus}
+
+The XP is not focused: it bears no focal accent in the relevant readings, it does not license the alternative-evoking interpretations characteristic of Greek focus fronting, and, most decisively, the clauses in which it occurs are precisely the ones described as \emph{wide} focus, that is, as having no narrowly focused constituent at all.  Where the XP does bear a focal accent --- as in the rescued readings of \ref{unerg42} --- it occupies a different, lower position and the construction is a different one.
+
+\subsection{Not moved}\label{notmoved}
+
+Finally, the XP has not moved into its position; it is externally merged there.  The argument is straightforward, and it is the one \citet{holmberg:00} uses for a comparable conclusion about Stylistic Fronting.  For the XP to have moved, there would have to be a position it moved from.  But the paradigms of \S\ref{predclasses} show that the corresponding low positions are not merely dispreferred but ungrammatical: \ref{unergative61}, \ref{unergative62}, \ref{evi141}, \ref{evi142}.  A movement analysis would therefore have to say that the XP is base-generated in a position it may never surface in, and must vacate on pain of ungrammaticality --- which is a description of the facts dressed as an explanation.
+
+It is worth emphasising how unusual this is.  These XPs are not arguments of the verb: \emph{sto grafeio} `in the office' is not selected by \emph{meleto} `study'.  Nor are they ordinary adjuncts, since ordinary adjuncts of the same semantic class appear happily in the low positions from which these are excluded.  What they are, we shall argue, is arguments of something else --- of the aspectual head --- and their position follows from where that head's argument can be discharged.
+
+\medskip
+That is the negative half.  The rest of the paper is the positive one.
+
+%% =====================================================================
+\section{Situations, aspect, and restriction}\label{semantics}
+%% =====================================================================
+
+\subsection{The ontology, briefly}\label{ontology}
+
+We adopt a situation semantics of the familiar Kratzerian kind \citep{kratzer:89,kratzer:19sep}, itself descended from \citet{austin:50} and \citet{barwise-perry:83}.  The domain of the model contains \emph{situations}, partially ordered by a part-of relation $\leq$; worlds are maximal situations; and eventualities are situations, so that no separate sort is needed for them.  We write $s, s', e, e'$ for variables over situations, using $e$ where the situation in question is one that exemplifies an eventive property, and we write $\tau(s)$ for the running time of $s$ and $\ell(s)$ for its spatial location.  Individuals may be parts of situations, and we write $x \leq s$ accordingly.  The type of situations is \sit.
+
+The single assumption we need beyond this is the Austinian one: every assertion is made \emph{about} a situation, its \textbf{topic situation}.  A finite clause denotes a property of situations, type \ty{\sit,t}, and it is true of the topic situation or it is not.
+
+\LIT{\citet{kratzer:19sep} is the Stanford Encyclopedia entry and is the citation of convenience; the substantive references are \citet{kratzer:89} and the exemplification-based semantics of her later work.  If we want to be maximally orthodox we should also nod to \citet{percus:00} here rather than only in \S\ref{root}, since our covert \prs{} is his situation pronoun.}
+
+The vP is a property of situations, type \ty{\sit,t}, in the neo-Davidsonian manner, with the external argument severed and introduced by $v$ \citep{kratzer:96}:
+
+\ex. \label{vpdenot}
+\dbr{\text{[}_{v\mathrm{P}}\ \text{i Maria meleta}]} $= \lambda e.\ \mathit{study}(e) \wedge \mathrm{Ag}(e) = \mathbf{m}$
+
+\subsection{Viewpoint aspect relates the topic situation to the eventuality}\label{aspsem}
+
+Since \citet{klein:94} it has been standard to take viewpoint aspect to relate an \emph{event time} to a \emph{topic time}.  Recast in situations, viewpoint aspect relates the eventuality described by the vP to the topic situation.  The perfective says that the eventuality is contained in the topic situation:
+
+\ex. \label{pfvdenot}
+\dbr{\mathrm{Asp}_{\textsc{pfv}}} $= \lambda P_{\ty{\sit,t}}\, \lambda s.\ \exists e\,[\, e \leq s \wedge P(e)\,]$ \hfill type \ty{\ty{\sit,t},\ty{\sit,t}}
+
+Applying \ref{pfvdenot} to \ref{vpdenot} gives \ref{pfvasp}, a property of situations:
+
+\ex. \label{pfvasp}
+\dbr{\mathrm{AspP}} $= \lambda s.\ \exists e\,[\, e \leq s \wedge \mathit{study}(e) \wedge \mathrm{Ag}(e) = \mathbf{m}\,]$
+
+\noindent `$s$ is a situation of which a studying by Maria is a part'.
+
+Note that \ref{pfvdenot} is \textbf{monadic} in the relevant sense: it takes one argument of type \ty{\sit,t} (the vP) and returns a property of situations whose single situation argument is the topic situation.  There is nothing else it needs.
+
+The imperfective is different, and here we make our central semantic claim.  Greek imperfective morphology is compatible with at least three construals --- progressive, habitual, and generic \citep{mozer:94,tsimpli-papadopoulou:05,spyropoulos-philippaki:01}.  On the progressive construal the imperfective is, like the perfective, monadic; it simply reverses the inclusion relation:
+
+\ex. \label{progdenot}
+\dbr{\mathrm{Asp}_{\textsc{ipfv-prog}}} $= \lambda P_{\ty{\sit,t}}\, \lambda s.\ \exists e\,[\, s \leq e \wedge P(e)\,]$
+
+On the habitual and generic construals, however, the imperfective introduces a quantifier over situations, and a quantifier is by its nature a two-place relation between sets.  We therefore take generic-habitual imperfective aspect to be \textbf{dyadic}:
+
+\ex. \label{gendenot}
+\dbr{\mathrm{Asp}_{\textsc{ipfv-gen}}} $= \lambda P_{\ty{\sit,t}}\, \lambda R_{\ty{\sit,t}}\, \lambda s.\ \textsc{gen}\ e\ [\, e \leq s \wedge R(e)\,]\ [\, \exists e'\,(\, e' \leq e \wedge P(e')\,)\,]$
+
+\medskip
+\noindent type \ty{\ty{\sit,t},\ty{\ty{\sit,t},\ty{\sit,t}}}.  Here $P$ is the vP property, contributed by the complement; $R$ is the \textbf{restrictor}, and it is the argument that has no obvious source inside AspP; and $s$ is the topic situation.  Informally: \emph{in the $R$-situations that are part of the topic situation, there is a $P$-eventuality}.  \textsc{gen} is the usual modalised default quantifier of \citet{krifka-etal:1995a}; nothing we say depends on its exact modal force, only on its being a quantifier and hence on its needing two arguments.
+
+This gives us a precise, and we think a considerably more contentful, version of a claim that has been made repeatedly in the literature on aspectual splits: that the imperfective is more complex than the perfective.  \citet{coon:13}, \citet{laka:06} and \citet{coon-preminger:17} make the complexity structural --- an additional clausal layer, an additional case domain.  \citet{kalin-vanurk:15} make it featural --- an additional $\varphi$-probe on Asp.  We propose that the complexity is, at bottom, one of \textbf{arity}:
+
+\ex. \label{AAH}
+\textbf{The Aspectual Arity Hypothesis (AAH)}\\
+Perfective and progressive viewpoint aspect are monadic operators on situation properties.  Generic-habitual viewpoint aspect is dyadic: it introduces a quantifier over situations and therefore requires a restrictor argument in addition to its scope.
+
+\medskip
+The virtue of \ref{AAH} is that it does not merely record the complexity but says what the extra structure is \emph{for}.  Structural and featural complexity, on this view, are the syntactic reflexes of a semantic fact, which is the right direction of explanation.
+
+\QST{Is \textsc{gen} really on Asp, or is it higher --- a clausal operator that the imperfective merely licenses?  The literature is divided and I have deliberately taken the low, lexicalist option because it lets head movement of Asp into T do the work in \S\ref{whyspecT}.  If you would rather have \textsc{gen} as a free-floating operator adjoined at the TP level, the semantics survives unchanged but the syntactic derivation of \emph{why [Spec,T]} gets weaker, and we would have to say instead that \textsc{gen} adjoins to T$'$ and takes [Spec,T] as its restrictor.  I think that is a worse story, but it is a live option and you may prefer it on independent grounds from your work on the Greek subjunctive.  \textbf{This is an executive decision and it changes \S\ref{whyspecT} substantially.}}
+
+\subsection{The Restrictor Condition on T}\label{RCT}
+
+We can now state the proposal.
+
+\ex. \label{RCTstate}
+\textbf{The Restrictor Condition on T (RCT)}\\
+\a. [Spec,T] is the position in which the restrictor argument of the clausal situation quantifier is discharged.
+\b. The EPP property of T is the requirement that this position be syntactically projected and semantically saturated.
+
+\medskip
+\ref{RCTstate} makes the EPP an argument-structural requirement, exactly parallel to the role that \citet{kratzer:96} assigns to $v$.  Just as $v$ is the head that introduces the external argument, T --- or rather, as we shall see in \S\ref{whyspecT}, the complex head formed by Asp-to-T movement --- is the head that introduces the situation restrictor.  The parallel is not decorative.  It is what allows us to say, in \S\ref{EPP1}, that the EPP is not a diacritic at all.
+
+Two immediate consequences.  First, [Spec,T] must be of type \ty{\sit,t}: a property of situations.  Second, since \ref{gendenot} has a restrictor slot and \ref{pfvdenot} and \ref{progdenot} do not, the demands placed on [Spec,T] differ by aspect, and it is that difference which drives \textsc{g1} and \textsc{g3}.
+
+\subsection{Three ways to fill [Spec,T]}\label{threeways}
+
+Type \ty{\sit,t} is not a type that many constituents wear on their sleeve, and one might worry that the requirement is too restrictive.  In fact exactly three kinds of element can meet it, and they are exactly the three we find.
+
+\medskip\noindent\textbf{(i) Locative and temporal XPs.}  These are natively of type \ty{\sit,t}.  A locative denotes the set of situations located in a given region; a temporal, the set of situations whose running time falls in a given interval or has a given sortal character:
+
+\ex. \label{xpdenots}
+\a. \dbr{\text{edo}} $= \lambda e.\ \ell(e) \subseteq \ell(s_{0})$ \hfill (`here': situations located where the utterance is)
+\b. \dbr{\text{se afto to grafeio}} $= \lambda e.\ \ell(e) \subseteq \iota x.\ \mathit{office}(x)$
+\b. \dbr{\text{kathe mera}} $= \lambda e.\ \mathit{day}(\tau(e))$
+\b. \dbr{\text{ta apogevmata}} $= \lambda e.\ \mathit{afternoon}(\tau(e))$
+\b. \dbr{\text{stis giortes}} $= \lambda e.\ \mathit{festive}(\tau(e))$
+
+Note that none of \ref{xpdenots} is a singleton.  \emph{edo} is deictic, but it is deictic about a \emph{place}, and there are indefinitely many situations located in a place.  This will matter a great deal.
+
+\medskip\noindent\textbf{(ii) A covert situation pronoun \prs.}  This is \citeposs{percus:00} situation pronoun: a variable of type \sit, whose value is fixed by the assignment function or by binding.  Being of type \sit, it must be shifted to type \ty{\sit,t} to occupy [Spec,T].  The only available shift is the identity-set shift:
+
+\ex. \label{identshift}
+$\textsc{ident}(\prs) = \lambda e.\ e = \prs$
+
+\noindent The result is a \emph{singleton}.  This is the crucial fact of the paper and we flag it here in advance: whatever else \prs{} can do, it cannot supply a restrictor with more than one member.
+
+\medskip\noindent\textbf{(iii) A raised subject DP.}  A DP is type $e$ and must likewise shift.  The natural shift, and the one Kratzer's part-of relation makes available, is:
+
+\ex. \label{partshift}
+$\textsc{part}(\mathbf{x}) = \lambda e.\ \mathbf{x} \leq e$ \hfill (`situations containing $\mathbf{x}$')
+
+\noindent This too is non-singleton: there are indefinitely many situations containing Maria.  \ref{partshift} is, in effect, the semantic content of subjecthood on this account, and it is worth pausing on the fact that it makes a subject and a locative do the same job in the same position by two different routes.  That is not a defect of the analysis; it is \textsc{g7}.
+
+\LIT{\textsc{part} in \ref{partshift} is doing a lot of work and needs a proper pedigree.  The obvious ones are \citet{kratzer:89} on lumps and part-of, and \citet{diesing:92} on the mapping from syntax to tripartite structures.  If you want a tighter formulation, \citeposs{kratzer:95} treatment of stage-level predicates as having a Davidsonian argument that individual-level predicates lack is a natural ally, and it would connect this section to \S\ref{thetic}.  I have not committed us to a particular one; pick your preference and I will make the text consistent.}
+
+\subsection{Deriving the aspectual asymmetry}\label{derive}
+
+Everything now follows from putting \ref{gendenot}, \ref{RCTstate} and \ref{threeways} together with one condition on \textsc{gen} which is not ours and which we take from the standard theory of genericity:
+
+\ex. \label{nontriv}
+\textbf{Non-triviality of \textsc{gen}}\\
+\textsc{gen}'s restrictor must be non-singleton.  A generic or habitual statement over a one-membered domain is not merely uninformative but ill-formed: there is no lawlike generalisation over a single case.
+
+\medskip
+\ref{nontriv} is not a stipulation invented for Greek.  It is the reason \emph{John generally left at six} is odd if John left exactly once, and it is built into every quantificational treatment of genericity we know of \citep{krifka-etal:1995a,chierchia:95ilp}.
+
+\medskip\noindent\textbf{Case A: perfective, no overt XP.}  Asp is monadic \ref{pfvdenot}.  Its single situation argument is the topic situation.  [Spec,T] is filled by \prs, shifted by \ref{identshift} to the singleton $\lambda e.\ e = \prs$; equivalently and more simply, \prs{} directly saturates the topic-situation slot.  Existential quantification over a singleton domain is perfectly contentful.  The derivation converges.  Result: \emph{Irthe o Yiannis} \ref{t11}.  \textbf{\textsc{g3} derived.}
+
+\medskip\noindent\textbf{Case B: generic-habitual imperfective, no overt XP.}  Asp is dyadic \ref{gendenot}.  Its restrictor argument must be discharged in [Spec,T].  The only covert candidate is \prs, which by \ref{identshift} yields a singleton, which by \ref{nontriv} cannot restrict \textsc{gen}.  The derivation crashes --- or, more precisely, no generic-habitual parse is available and the string is left with only the progressive or verum-focus parses that speakers in fact report.  Result: \#\emph{meletaei i Maria} \ref{unergatives1}.  \textbf{\textsc{g1} derived.}
+
+\medskip\noindent\textbf{Case C: generic-habitual imperfective, overt XP.}  [Spec,T] is filled by a locative or temporal of type \ty{\sit,t} from \ref{xpdenots}, which is non-singleton.  \textsc{gen} is properly restricted.  The derivation converges.  Result: \emph{Edo meletai i Maria} \ref{t21}.  Composed out in full:
+
+\ex. \label{fullcomp}
+\dbr{\text{Edo meletai i Maria}} $=$\\
+$\lambda s.\ \textsc{gen}\ e\ [\, e \leq s \wedge \ell(e) \subseteq \ell(s_{0})\,]\ [\, \exists e'\,(\, e' \leq e \wedge \mathit{study}(e') \wedge \mathrm{Ag}(e') = \mathbf{m}\,)\,]$
+
+\medskip
+\noindent`The topic situation is one whose here-located parts are, in general, parts containing a studying by Maria.'  Which is precisely the reading speakers report, and which we could not have got out of \ref{t21} by any route that treated \emph{edo} as a topic.
+
+\medskip\noindent\textbf{Case D: perfective, overt property-denoting XP.}  Asp is monadic and has no restrictor slot.  A type-\ty{\sit,t} XP in [Spec,T] therefore has nothing to combine with, unless it can shift to type \sit{} --- that is, unless it can denote a particular situation.  Where it cannot, the derivation crashes.  Result: *\emph{to apogevma meletise i Maria} \ref{unerg2}, *\emph{ta apogevmata epexe i Maria} \ref{unergative7}.  \textbf{\textsc{g3} derived from the other side.}
+
+\medskip
+That last case is where the analysis pays for itself, and it deserves its own section.
+
+\subsection{The perfective residue}\label{pfvxp}
+
+\textsc{g4} said that some perfective clauses \emph{require} an initial XP, contrary to \textsc{g3}.  We can now see why, and why the required XP has the properties it has.
+
+The perfective's situation argument is the topic situation, type \sit.  In a root clause with no overt occupant of [Spec,T], that argument is \prs, and \prs{} must receive a value.  Following \citet{percus:00}, the situation pronoun in the highest position of a clause is bound by the closest situation binder; in a root clause the only such binder is the one that supplies the utterance situation.  Hence in a root perfective V1 clause the assertion is about $s_{0}$: this is exactly the deictic anchoring that \citet{alexiadou:07} describes as the perfective's ability to identify events deictically, and it is why \ref{t11} is understood as \emph{John arrived \textbf{here}} without any covert locative having to be posited at all.  The locative flavour is not a silent PP; it is the content of the topic situation.
+
+Now: when \emph{can} \prs{} be resolved to $s_{0}$?  Not always.  It requires the described eventuality to be construable as part of the utterance situation broadly understood --- which, for a past-tense clause, means that the situation the speaker is talking about must be one that reaches into the here-and-now.  Verbs of arrival and appearance satisfy this easily: their result states hold at $s_{0}$, and their subjects are typically new, so that something is genuinely being \emph{presented} into $s_{0}$.  Where this fails, \prs{} is unresolvable, [Spec,T] must be filled overtly, and the only element that can fill it is one that denotes a \emph{particular} situation --- a definite, uniquely anchoring locative or temporal.  This is the perfective residue:
+
+\ex. \label{residue}
+\a. *(edo) ezise i Maria Kallas \hfill (the living is over; nothing reaches $s_{0}$)
+\b. *(xthes) ipevale i Maria tin paretisi tis \hfill (the subject is given; nothing is presented)
+\b. (to 1977) pethenei i Maria Kallas \hfill (narrative present; $s_{0}$ is fictional and must be set)
+
+And the required XP must \emph{shift to type \sit}, by a definite type-shift $\iota$:
+
+\ex. \label{iotashift}
+$\iota(\lambda e.\ \tau(e) = \text{yesterday}) = \iota e.\ \tau(e) = \text{yesterday}$ \hfill (`the yesterday-situation')
+
+\noindent which is defined only if the property picks out a unique situation.  \emph{xthes} `yesterday' does; \emph{edo} `here', in a context where a single place is salient, does; \emph{to 1977} does.  \emph{to apogevma} `in the afternoon' does not --- which afternoon? --- and \emph{ta apogevmata} `the afternoons', being plural, cannot in principle.  We therefore predict, and this is the sharpest prediction in the section:
+
+\ex. \label{pfvpred}
+With the perfective, an initial XP is acceptable exactly to the extent that it uniquely identifies a situation; definite and deictic XPs are good, indefinite and plural ones bad, and adding material that makes the XP unique should repair it.
+
+\medskip
+This directly predicts the *\emph{ta apogevmata} / \#\emph{sto dialeima} gradience in \ref{unergative7}, and it predicts that \emph{xthes to apogevma meletise i Maria} should be fully acceptable against the starred \ref{unerg2}.  This is test (iii) in the DATA box of \S\ref{pfvfacts}.
+
+\DEC{If test (iii) fails --- if adding a uniquely-identifying modifier does \emph{not} rescue perfective XP-V --- then the $\iota$-shift story is wrong and we need a fallback.  The fallback I would take is this: perfective [Spec,T] is not a restrictor at all but a genuine \emph{saturator}, and the residue cases involve merger of a situation-denoting DP/PP directly, with the $\iota$ built into the lexical item (so \emph{xthes} is lexically type \sit, not type \ty{\sit,t}).  That version is less unified but it survives the failure of (iii).  It costs us the gradience prediction, which is a real loss.  I would rather have the current version; you decide once the judgements are in.}
+
+\subsection{Deriving the thetic/categorical contrast}\label{thetic}
+
+\textsc{g7} said that when the subject rather than the XP occupies [Spec,T], the interpretation is categorical rather than thetic.  This now follows without further assumption, and it is, we think, the most satisfying result of the account.
+
+The thetic/categorical distinction goes back to \citet{kuroda:72} and, in its modern form, to \citet{ladusaw:94}: a categorical judgement predicates something of a subject; a thetic judgement asserts the existence of an eventuality without predicating of anything.  On the present account the distinction is not primitive.  It is a consequence of \emph{which} element supplies the restrictor:
+
+\ex. \label{thetcat}
+\a. \textbf{Categorical.}  Subject in [Spec,T], shifted by \textsc{part} \ref{partshift}:\\
+$\lambda s.\ \textsc{gen}\ e\ [\, e \leq s \wedge \mathbf{m} \leq e\,]\ [\, \exists e'\,(\, e' \leq e \wedge \mathit{study}(e')\wedge \mathrm{Ag}(e')=\mathbf{m}\,)\,]$\\
+`In situations containing Maria, Maria studies.'  \emph{I Maria meletai.}
+\b. \textbf{Thetic.}  Locative in [Spec,T]:\\
+$\lambda s.\ \textsc{gen}\ e\ [\, e \leq s \wedge \ell(e)\subseteq \ell(s_{0})\,]\ [\, \exists e'\,(\, e' \leq e \wedge \mathit{study}(e')\wedge \mathrm{Ag}(e')=\mathbf{m}\,)\,]$\\
+`In here-situations, Maria studies.'  \emph{Edo meletai i Maria.}
+
+\medskip
+In \ref{thetcat}a Maria is in the restrictor: the clause is \emph{about} her, and the traditional description of the preverbal subject as a topic is, at the level of interpretation, correct --- though its structural implementation is not.  In \ref{thetcat}b Maria is in the nuclear scope: she is part of what is asserted, hence part of the focus, hence the ``wide focus'' of the descriptive literature.  The subject's position is not stipulated to correlate with information structure; it \emph{is} the information structure, because restrictor and scope are what topic and comment come to in a tripartite semantics.
+
+We note, without pursuing it, that this makes the Greek facts a rather direct argument for \citeposs{diesing:92} Mapping Hypothesis, since it requires the syntax--semantics mapping to be sensitive to the TP boundary in exactly the way she proposed.
+
+\subsection{Deriving positional rigidity}\label{mapping}
+
+\textsc{g2} said the XP must be clause-initial.  Given \ref{RCTstate} and Diesing's mapping, this is immediate: the restrictor is [Spec,T] and nothing else is.  An XP merged inside vP falls in the nuclear scope and is existentially closed along with everything else there; it cannot restrict.  Hence:
+
+\ex. \label{whyinitial}
+\a. *\emph{meletaei i Maria kathe mera} \ref{unerg3}: \textsc{gen} has no restrictor.  Crash.
+\b. \#\emph{meletaei kathe mera i Maria} \ref{unerg42}: \textsc{gen} has no restrictor \emph{from the syntax}, but the XP is in a position where it can bear a focal accent, and focus induces a background partition which can serve as \textsc{gen}'s restrictor by the usual association-with-focus route.  Hence the narrow-focus rescue, and hence \# rather than *.
+
+\medskip
+The difference in diacritic between \ref{unerg3} and \ref{unerg42} thus falls out of the difference between a position from which association with focus is available and one from which it is not.  We are aware that this presupposes a particular view of clause-final adverbials in Greek and we do not have space to defend it here.
+
+\QST{Is the prosody right?  My claim in \ref{whyinitial}b is that \#\emph{meletaei kathe mera i Maria} improves exactly under a pitch accent on \emph{kathe mera}, and that the clause-final \ref{unerg3} does not improve even with an accent there.  If \ref{unerg3} \emph{does} improve with focal stress on the final adverbial, then the two are the same case and I have over-read the diacritics in the old draft --- in which case we should regularise both to \# and drop this subsection's second half.  Worth thirty seconds with a speaker.}
+
+\subsection{Deriving the root/embedded asymmetry}\label{root}
+
+\textsc{g6} contained two claims: that \typb occurs freely in embedded clauses, and that the thetic reading of \typa does not.  Both follow.
+
+\typb is a \textsc{gen} structure whose restrictor is overt.  Nothing about \textsc{gen} is root-restricted, and nothing about an overt restrictor requires access to $s_{0}$.  Hence \typb embeds freely, as \ref{evi20}--\ref{embedded1} show.
+
+\typa depends on \prs{} being resolved to $s_{0}$.  By \citeposs{percus:00} Generalisation X, a situation pronoun must be bound by the closest situation binder c-commanding it.  In an embedded clause the closest binder is the one introduced by the matrix predicate --- for \emph{mou eipe oti}, the binder over the situations compatible with what was said.  \prs{} is therefore bound by the attitude and \emph{cannot} be $s_{0}$.  The deictic anchoring that produces the presentational, ``what happened?'' interpretation is thereby unavailable, which is exactly the observed restriction.  The embedded clause is of course still grammatical; it simply is not thetic.
+
+This is a genuine result and we want to be clear about how much of it is ours: the machinery is entirely \citeposs{percus:00}, and all we have done is notice that the Greek root restriction is the shape of his generalisation.  But the fit is close, and no other account of these constructions that we are aware of derives the root restriction at all --- most simply record it.
+
+\subsection{Summary of the semantic account}
+
+\ref{semsummary} collects the derivations.
+
+\ex. \label{semsummary}
+\begin{tabular}{lllll}
+\hline
+Asp & arity & [Spec,T] & type demand & result\\
+\hline
+\textsc{pfv} & monadic & \prs & \sit, resolvable & V1 thetic (\typa), root only\\
+\textsc{pfv} & monadic & \prs & \sit, unresolvable & crash $\Rightarrow$ overt $\iota$-XP required (\textsc{g4})\\
+\textsc{pfv} & monadic & XP & \sit{} via $\iota$ & good iff uniquely anchoring\\
+\textsc{ipfv-prog} & monadic & \prs & \sit, resolvable & V1, progressive reading\\
+\textsc{ipfv-gen} & dyadic & \prs & \ty{\sit,t} non-singleton & crash: singleton (\textsc{g1})\\
+\textsc{ipfv-gen} & dyadic & XP & \ty{\sit,t} non-singleton & XP-V, thetic (\typb)\\
+\textsc{ipfv-gen} & dyadic & subject & \ty{\sit,t} via \textsc{part} & SVO, categorical (\textsc{g7})\\
+\hline
+\end{tabular}
+
+\subsection{An important refinement: progressive versus generic}\label{prog}
+
+The reader will have noticed that the account in \ref{semsummary} does not say that \emph{the imperfective} requires an initial XP.  It says that the \emph{generic-habitual construal} of the imperfective does.  This is a departure from the descriptive generalisation as it is usually stated, including as we stated it ourselves in earlier work \citep{sifaki-tsoulas:16}, and we think it is a correction rather than a complication.
+
+Recall the two loose ends in the descriptive section.  First, verb-initial imperfectives are not simply ungrammatical; they are reported as ``felicitous only with verum focus''.  Second, and more seriously, it is plainly not true that a Greek subject can never precede an imperfective verb: \emph{I Maria meletai kathe mera} is unremarkable.  Both are exactly what the refinement predicts.  A verb-initial imperfective is fine on the progressive construal, where Asp is monadic and \prs{} suffices; what is reported as verum focus is, we suggest, in part the pragmatic residue of a progressive parse forced by the failure of the generic one.  And a preverbal subject is fine because it restricts \textsc{gen} by \textsc{part}.
+
+\DAT{\textbf{The single most important test in the paper.}  Take a verb-initial imperfective with no XP:
+
+\medskip
+\hspace*{2em}(a) Q: \emph{Ti kani o Yiannis?} `What is John doing?' \quad A: \emph{Meletai o Yiannis.}\\
+\hspace*{2em}(b) Q: \emph{Ti simveni?} `What's going on?' \quad A: \emph{Erhotan o Yiannis.}\\
+\hspace*{2em}(c) Q: \emph{Pu ine i Maria?} `Where is Maria?' \quad A: \emph{Kimatai i Maria.}
+
+\medskip
+\textbf{If these are acceptable on a progressive/ongoing reading}, the refinement is confirmed and the paper's generalisation should be restated throughout in terms of genericity rather than imperfectivity.  \textbf{If they are not}, then the imperfective as such blocks V1, the refinement is wrong, and we must instead say that Greek imperfective morphology \emph{always} spells out the dyadic Asp --- which is statable but costs us the explanation of preverbal subjects in \S\ref{prog}, and forces the two-guise treatment in \S\ref{phiprobe} to do that work instead.
+Please test (a)--(c) with the question contexts given, not in isolation.}
+
+\DEC{If the tests above come out as I expect, then the paper's framing needs to change and the title with it: the generalisation is about \emph{genericity}, not about \emph{aspect}, and the imperfective is implicated only because it is the form that genericity is spelled out on in Greek.  That is a stronger and more novel claim, it connects the paper to a much larger literature (Krifka et al., Chierchia, Cohen \& Erteschik-Shir), and it makes the perfective residue of \S\ref{pfvxp} much less anomalous, since on that framing the perfective was never the conditioning factor in the first place.  It is also a bigger rewrite of \S\S\ref{Greeksection}--\ref{semantics} than anything else in this draft, which is why I have written the sections so that the change is local: the denotations already carry the \textsc{gen} subscript, so the change is in the prose and in \textsc{g1}, \textsc{g3}, and \textsc{g4}, not in the formalism.  \textbf{Tell me which way to go and I will make it consistent in one pass.}}
+
+%% =====================================================================
+\section{The syntax}\label{syntax}
+%% =====================================================================
+
+The semantics of \S\ref{semantics} tells us what has to be in [Spec,T] and why.  It does not tell us why the relevant position is [Spec,T] rather than [Spec,Asp], it does not tell us why the verb raises, and it does not tell us what --- if anything --- keeps the subject low.  This section takes those three questions in order, and it takes the third of them considerably more sceptically than earlier versions of this work did.
+
+\subsection{Why [Spec,T], and why V-to-T is not incidental}\label{whyspecT}
+
+There is an obvious mismatch to be addressed.  The restrictor argument in \ref{gendenot} belongs to Asp.  Yet the XP that discharges it appears in [Spec,T], above T, and separated from Asp by the verb.  Why is the restrictor not in [Spec,Asp]?
+
+The answer is head movement, and it turns the apparent problem into an argument.  Greek has robust, uncontroversial V-to-T movement \citep{Alexiadou-Anagnostopoulou:98,philippaki:85}.  The verb raises through $v$ and Asp into T, forming a complex head.  On any theory of head movement in which the moved head's features are visible at the landing site --- \citet{matushansky:06}, \citet{roberts:10hm}, or a feature-sharing implementation --- the complex head [[[V+$v$]+Asp]+T] bears Asp's unsaturated argument, and the specifier of the projection of that complex head is [Spec,T].  Aspect's restrictor is therefore discharged in [Spec,T] \emph{because} Asp has moved there.
+
+\ex. \label{whyspecTstate}
+\textbf{The Discharge Generalisation}\\
+An argument slot introduced by a head H is discharged in the specifier of the highest projection of the complex head containing H.
+
+\medskip
+\ref{whyspecTstate} is not a novel principle; it is what makes clitic climbing, restructuring and complex-predicate formation work generally.  What is new is the use to which we put it, which is to make the head dependency and the phrasal dependency of the EPP into two aspects of a single requirement rather than two alternative ways of meeting one.  This is the precise sense in which, as we shall argue in \S\ref{EPP1}, the \emph{conjunctive} formulation of the EPP is the right one for Greek.
+
+It also yields the paper's main comparative prediction, which we state here and defend in \S\ref{crosslinguistic}:
+
+\ex. \label{v2tpred}
+\textbf{The V-to-T Prediction}\\
+Greek-type XP-V is possible only in languages with syntactic V-to-T movement.  In a language where the relation between the verb and T is established post-syntactically --- by affix hopping or morphological merger \citep{bobaljik:95m,embick-noyer:01} --- Asp never occupies T, its restrictor argument can never be discharged in [Spec,T], and only DP subjects, which restrict by \textsc{part}, can occupy that position.
+
+\medskip
+English, on this account, has no XP-V of the Greek kind not because its EPP is differently specified but because its verb does not raise.
+
+\subsection{The structures}\label{trees}
+
+We give the two structures explicitly.  \ref{treeIPFV} is the generic-habitual imperfective XP-V clause \emph{Edo meletai i Maria}; \ref{treePFV} is the perfective V1 clause \emph{Irthe o Yiannis}.  In both, the complex head in T is [[[V+$v$]+Asp]+T]; traces of head movement are written $t$.
+
+\ex. \label{treeIPFV}
+\begin{tabular}[t]{@{}l@{}}
+\begin{forest}
+baseline, for tree={align=center, s sep=5mm, l sep=7mm, inner sep=1pt, font=\small}
+[TP
+  [{XP$_{\textsc{loc/temp}}$\\[-3pt]{\scriptsize\emph{edo}\,:\ $\lambda e.\,\ell(e)\subseteq\ell(s_{0})$}}]
+  [{T$'$}
+    [{T$^{0}$\\[-3pt]{\scriptsize [[V+$v$]+Asp$_{\textsc{ipfv-gen}}$]+T}}]
+    [{AspP}
+      [{Asp$^{0}$\\[-3pt]{\scriptsize $t_{\mathrm{Asp}}$}}]
+      [{$v$P}
+        [{DP$_{\textsc{nom}}$\\[-3pt]{\scriptsize\emph{i Maria}}}]
+        [{$v'$}
+          [{$v^{0}$\\[-3pt]{\scriptsize $t_{v}$}}]
+          [{VP\\[-3pt]{\scriptsize $t_{\mathrm{V}}$}}]
+        ]
+      ]
+    ]
+  ]
+]
+\end{forest}
+\end{tabular}
+
+\ex. \label{treePFV}
+\begin{tabular}[t]{@{}l@{}}
+\begin{forest}
+baseline, for tree={align=center, s sep=5mm, l sep=7mm, inner sep=1pt, font=\small}
+[TP
+  [{\prs\\[-3pt]{\scriptsize $=s_{0}$}}]
+  [{T$'$}
+    [{T$^{0}$\\[-3pt]{\scriptsize [[V+$v$]+Asp$_{\textsc{pfv}}$]+T}}]
+    [{AspP}
+      [{Asp$^{0}$\\[-3pt]{\scriptsize $t_{\mathrm{Asp}}$}}]
+      [{$v$P}
+        [{$v'$}
+          [{$v^{0}$\\[-3pt]{\scriptsize $t_{v}$}}]
+          [{VP}
+            [{V\\[-3pt]{\scriptsize $t_{\mathrm{V}}$}}]
+            [{DP$_{\textsc{nom}}$\\[-3pt]{\scriptsize\emph{o Yiannis}}}]
+          ]
+        ]
+      ]
+    ]
+  ]
+]
+\end{forest}
+\end{tabular}
+
+\noindent In \ref{treePFV} the subject of the unaccusative originates as the internal argument and does not raise; in \ref{treeIPFV} the external argument of the unergative sits in [Spec,$v$P] and does not raise.  Nothing so far says why not, and that is the subject of the next subsection.
+
+\subsection{Does anything keep the subject low?  The $\varphi$-probe on Asp}\label{phiprobe}
+
+Earlier versions of this work, including \citet{sifaki-tsoulas:16}, answered the question of the previous paragraph as follows.  Building on \citet{kalin-vanurk:15}, and on the broader literature which takes non-perfective aspects to be structurally or featurally more complex \citep{coon:13,laka:06,coon-preminger:17,deal:16}, we proposed that imperfective Asp in Greek bears an additional $\varphi$-probe which Agrees with the subject in [Spec,$v$P] and case-licenses it \emph{in situ}.  The subject, having had its Case valued, is inactive for T's probe, cannot be attracted, and remains where it is; in Rizzian terms, [Spec,$v$P] becomes its criterial position \citep{rizzi:06}.  The derivations were as in \ref{derivIPFV}--\ref{derivPFV}:
+
+\ex. \label{derivIPFV}
+\textbf{Imperfective}
+\a. Build $v$P.
+\b. Merge Asp$_{\textsc{ipfv}}$, bearing $[u\varphi]$ and $[\textsc{nom}]$.
+\b. Asp probes and Agrees with the subject in [Spec,$v$P].
+\b. Asp's $[u\varphi]$ is valued; the subject is assigned nominative in situ and becomes inactive.
+\b. Merge T.  Raise [[V+$v$]+Asp] to T.
+\b. Merge the initial XP in [Spec,T].
+
+\ex. \label{derivPFV}
+\textbf{Perfective}
+\a. Build $v$P.
+\b. Merge Asp$_{\textsc{pfv}}$, bearing no $\varphi$-features.
+\b. Merge T, bearing $[u\varphi]$ and $[\textsc{nom}]$.
+\b. T probes and Agrees with the subject.
+\b. Raise [[V+$v$]+Asp] to T.
+\b. Merge \prs{} in [Spec,T].
+
+\medskip
+There is a real argument for this, and there are two real problems with it.  We give all three, because we would rather a referee found them in our text than in their own notes.
+
+\medskip\noindent\textbf{The argument in favour: agreement morphology and obligatory head movement.}  If Asp values nominative in the imperfective, T's own $\varphi$-features are left unvalued, and the derivation would crash unless something delivers them.  Head movement does: the complex head raising into T carries Asp's valued $\varphi$ with it, and subject agreement is realised on the verb in T as it is in fact realised.  On this view V-to-T movement in imperfective clauses is not an independent parameter setting but a repair --- the only route by which T's features can be valued.  That is an attractive result, and it converges from a second direction on the conclusion of \S\ref{whyspecT}: the head dependency is necessary, not optional.
+
+\medskip\noindent\textbf{Problem 1: Greek has no differential subject marking.}  \citeposs{kalin-vanurk:15} probe has a morphological consequence in Neo-Aramaic; in Greek it has none.  We think this is answerable but the answer must be stated openly: the \emph{effect} of the extra probe is to license the subject low, and whether that effect is morphologically visible depends on the case and agreement inventory of the language.  Greek has one nominative and a single agreement paradigm; the probe is therefore morphologically invisible and \emph{syntactically} visible --- through the subject's failure to raise, and through \textsc{g8}.  A referee may find this convenient.  We would rather say it than have it said to us.
+
+\medskip\noindent\textbf{Problem 2, and it is the serious one: the probe may have nothing to do.}  On the semantic account of \S\ref{semantics}, the subject in \emph{Edo meletai i Maria} does not raise for the simple reason that [Spec,T] is occupied.  No freezing is required.  And if the DATA box in \S\ref{compdist} returns Verdict B --- if \emph{Edo i Maria meletai} is grammatical with a categorical interpretation --- then the subject is demonstrably \emph{not} frozen, and the probe is machinery without a job.
+
+\DEC{\textbf{This is the largest single decision in the redraft, and I want to be direct with you about it.}
+
+\smallskip
+As things stand, the $\varphi$-probe on Asp is the most vulnerable part of the paper: it imports machinery from a split-ergativity literature into a language with no split, its morphological signature is invisible by hypothesis, and the semantic account renders it unnecessary for the core data.  A \emph{Glossa} referee will go for it.  I see three options.
+
+\smallskip
+\textsc{Option 1 (my recommendation): demote.}  Keep \S\ref{semantics} as the analysis.  Reduce this subsection to two paragraphs which say: the imperfective's extra semantic argument may well have a syntactic reflex, of the kind Kalin \& van Urk propose, and \textsc{g8} is suggestive; but the account does not depend on it.  \textbf{Cost:} we lose a syntactic result and the paper becomes more semantic than the one you and Evi set out to write.  \textbf{Benefit:} nothing in the paper is then hostage to a claim we cannot independently support, and the V-to-T argument of \S\ref{whyspecT} survives intact and is the syntactic result.
+
+\smallskip
+\textsc{Option 2: keep and defend.}  Retain the probe as the analysis of \textsc{g7} and \textsc{g8}, and find independent evidence.  The evidence would have to be a $\varphi$-related asymmetry between perfective and imperfective clauses.  Candidates: agreement with conjoined postverbal subjects; agreement in \emph{ipsative}/reflexive configurations; person restrictions on postverbal subjects.  \textbf{This is real work and it is a paper's worth of it.}
+
+\smallskip
+\textsc{Option 3: replace.}  Say that what keeps the subject low is not Case but the \textsc{part} shift: a DP can only restrict \textsc{gen} from [Spec,T], and if the XP is there the subject has no restrictive role to play, so raising it would be movement without motivation and is ruled out by economy.  \textbf{Cost:} economy arguments of this shape are unfashionable and a referee may not accept one.  \textbf{Benefit:} no new machinery at all.
+
+\smallskip
+I have written the section so that Option 1 requires deleting from ``Earlier versions'' to the end of \S\ref{pronouns} and pasting in the two-paragraph version, which I will supply on request.  Tell me which.}
+
+\subsection{Postverbal strong pronouns}\label{pronouns}
+
+\textsc{g8} --- the exclusion of overt postverbal strong pronominal subjects, \ref{roussou-tsimpli9} --- is the one datum that a purely semantic account does not obviously reach, and it is therefore the best evidence for a low-licensing syntax.
+
+The reasoning is this.  Greek strong pronouns, unlike null subjects, are not licensed by agreement alone; following \citet{cardinaletti-starke:99} and \citet{cardinaletti2004}, a strong pronoun must be licensed in a designated, interpretively contentful position --- for Greek, a contrastive topic or focus position in the left periphery.  If the subject in the imperfective XP-V structure is criterially frozen in [Spec,$v$P] \citep{rizzi:06}, it cannot reach any such position, and a strong pronoun is therefore unlicensable.  A null subject, by contrast, needs no such position and is fine.  The pattern in \ref{roussou-tsimpli9} follows.
+
+\medskip
+\noindent This is a real argument for Option 2 in the box above, and it is why we have not simply cut the probe.  But it depends on a premise --- that the freezing is criterial and hence blocks A$'$-movement as well as A-movement --- which does not follow from Case-valuation alone, and which needs stating as such.
+
+\DAT{The clean test: in a \emph{perfective} V1 clause, is an overt postverbal strong pronoun any better?  \emph{Xthes irtha ego} `yesterday came I', \emph{Sto sxolio filise aftos ti Maria}.  If postverbal strong pronouns are equally bad in both aspects, \textsc{g8} is not about our construction and this subsection should go.  If they are noticeably better in the perfective, \textsc{g8} is a genuine aspectual asymmetry and Option 2 in the DECISION box gets its independent evidence --- which would be a significant strengthening of the paper.  I rate this the second most valuable test after \S\ref{prog}.}
+
+\subsection{Crosslinguistic consequences}\label{crosslinguistic}
+
+The V-to-T Prediction \ref{v2tpred} classifies languages as follows.
+
+\medskip\noindent\textbf{Greek.}  V-to-T; XP-V available; both restrictor strategies (XP and subject) available; hence \textsc{g1}--\textsc{g8}.
+
+\medskip\noindent\textbf{Italian and Spanish.}  V-to-T; XP-V available.  This is exactly \citeposs{pinto:97} and \citeposs{zubizarreta:1998a} observation that V1 is not always tolerated and that a preverbal locative or temporal rescues it, and \citeposs{sheehan:06,sheehan:10} comparative survey.  We predict that the Romance patterns should show the same aspectual conditioning, mutatis mutandis for the different aspectual inventories --- in Italian the relevant contrast should track \emph{imperfetto} versus \emph{passato remoto}/\emph{passato prossimo}.
+
+\medskip\noindent\textbf{English.}  No syntactic V-to-T for lexical verbs; Asp never reaches T; only DP subjects can occupy [Spec,T].  No XP-V.  This is, we think, a better account of the English/Greek difference than one which says that English requires a nominal subject, because it says \emph{why} it does.
+
+\medskip\noindent\textbf{Icelandic.}  V-to-T; and indeed [Spec,T] can be filled by non-subjects, as Stylistic Fronting shows \citep{holmberg:00}.  But the fillers are predicative adjectives, participles and negation --- not situation-denoting expressions.  We take this up in \S\ref{formalvscontentful}, where we argue that Icelandic instantiates the case in which the phrasal dependency is purely formal.
+
+\DAT{Two things would make \S\ref{crosslinguistic} much stronger and neither needs new fieldwork.
+(a) \textbf{Italian aspectual data.}  Pinto's cases are mostly in the present.  Does \emph{Dormiva Maria} improve in the way \emph{Nel pomeriggio dormiva Maria} does?  If the Italian \emph{imperfetto} shows the Greek pattern, we have a comparative result rather than a comparative promise.  Evi may have this at her fingertips; if not, one Italian colleague settles it.
+(b) \textbf{A V-to-T-less null-subject language.}  The prediction \ref{v2tpred} is only interesting if some language falsifies the alternative.  Brazilian Portuguese and Finnish are the obvious probes.  \citet{holmberg:05li} on Finnish is the place to start.}
+
+%% =====================================================================
+\section{The EPP}\label{EPP1}
+%% =====================================================================
+
+We have been using the term EPP throughout without saying what we take it to be.  That debt now falls due, and paying it is not incidental to the paper: our claim is that these Greek constructions tell us something about the EPP that could not easily be learnt elsewhere.
+
+\subsection{The EPP as a feature and as a property of a feature}\label{featureorproperty}
+
+Following \citet{Alexiadou-Anagnostopoulou:98} it is generally assumed that, whatever the precise nature of the EPP requirement, it can be satisfied either by movement of a head into the head bearing it --- the moving head having to bear the right kind of feature --- or by phrasal movement into that head's specifier.  On this view the EPP is a \emph{property of features} rather than a feature in its own right: it is a reincarnation of the older notion of feature strength.
+
+An alternative takes seriously the now standard talk of \emph{the EPP feature}, on which the EPP is a property of feature bundles, that is, of lexical items.  There is ample evidence for the first view.  In the great majority of cases the element that moves is the element that Agree has targeted; even most expletives carry the relevant feature, typically a D-feature.  But it is not always so, and the data of this paper are a case in point: the EPP requirement here is satisfied by elements that have nothing to do with any independent feature of the head they attach to.  Beyond Greek, \citet{holmberg:00} shows for Stylistic Fronting in Icelandic that [Spec,T] may be filled by predicative adjectives, negation and much else, on condition that neither a subject nor an expletive can be moved or merged there.
+
+The two construals make different predictions, and the difference is worth working through carefully, because it is not usually made explicit.  Suppose the EPP \emph{qua} feature requires [Spec,T] to be filled by an X$^{max}$ --- a conservative assumption, and one English appears to satisfy.  But now consider what happens if the EPP is a feature probing into its c-command domain.  It is natural to suppose that minimal search will not return the subject DP but rather $v$P, as the closest X$^{max}$.  That would force $v$P-raising to [Spec,T], and an order like S--Adv--V--O would be underivable unless the subject raised further to a topic position.  Leaving aside the dubiousness of that last movement, this is what English clause structure ought to look like under a feature-EPP approach.  Whether that structure is defensible is not at issue here; current understanding of English suggests it is not.  What this means is that English is a language in which the EPP is a property of a feature --- D or C --- rather than a feature in its own right.
+
+There could, on the other hand, be languages where the EPP is a feature in its own right and can be satisfied by any XP.  Scandinavian Stylistic Fronting looks like a case in point, though one would still have to explain why it is not the $v$P that raises, since minimal search would identify it as the closest X$^{max}$.  One explanation appeals to generalised anti-locality \citep[et seq.]{abels:03}: raising the $v$P to [Spec,T] would violate anti-locality, rendering it ineligible and causing the search algorithm to continue inside it.  Of course, such an account could equally be invoked for English, and where subject raising is concerned nothing would change.  The difference emerges with non-subjects.  English disallows them and cannot therefore be a feature-EPP language.  Icelandic allows them and can be so construed.  We can thus classify languages by the way the EPP property is expressed: as a property of lexical items, or as a property of features thereof.
+
+When Greek is added to the mix, and assuming \citeposs{Alexiadou-Anagnostopoulou:98} theory is broadly correct, it appears that there are also \emph{mixed} languages, in which both realisations are permitted.  Since there is a clear distinction between a feature and a property of a feature, there is no internal contradiction here.  Greek instantiates the logical possibility in which the epiphenomenal EPP property of T can be satisfied \emph{multiply}.
+
+\QST{I have kept this subsection close to your original because I think the distinction is right and because it does real work in \S\ref{formalvscontentful}.  But one thing in it needs firming up before submission.  The argument that English cannot be a feature-EPP language runs through minimal search returning $v$P; a referee working in a framework where the EPP is an edge feature on a phase head, or where labelling rather than search does the work \citep{chomsky:08}, will not accept the premise.  I would add two sentences making explicit that the argument is conditional on a search-based implementation, and noting that it goes through equally on a labelling implementation for a different reason (a $v$P in [Spec,T] would give an $\{$XP,YP$\}$ configuration with no shared prominent feature and hence no label).  Do you want me to write those two sentences, or would you rather cite \citet{richards:07} and leave it?}
+
+\subsection{The EPP as dependency licensing}\label{dualdep}
+
+A different view of the EPP takes it to be a way of licensing specific dependencies from the phase heads.  To see it, consider one way of thinking about the semantic effect of the EPP.  We can regard the function of the EPP on C and on T in the same way we generally understand the function of $v$: as the introduction of a further argument.  For $v$, following \citet{kratzer:96}, the idea is that it is this head that introduces the external argument; at the same time $v$ has been seen as a verbalising element triggering movement of the root generated in the lower $\sqrt{}$ position.  Suppose now that instead of building argument introduction into the semantics of $v$, we link it to the presence of an EPP feature.\footnote{An idea along these lines is pursued by \citet{butler:04}.}  Nothing much changes at the $v$ phase.  But we then notice something: the EPP on $v$, on this view, triggers a \emph{dual} dependency.  It is not that it may be satisfied either by head movement or by phrasal movement; \emph{both} are realised, and both must be.
+
+This suggests two alternative formulations of the EPP requirement:
+
+\ex. \label{disjunctive}
+\textbf{The EPP (disjunctive formulation)}\\
+The EPP requirement of a head $\mathcal{H}$ may be satisfied \textbf{either} by phrasal movement to [Spec,$\mathcal{H}$] \textbf{or} by movement of another head $\mathcal{J}$ into $\mathcal{H}$.
+
+\ex. \label{conjunctive}
+\textbf{The EPP (conjunctive formulation)}\\
+The EPP requirement of a head $\mathcal{H}$ must be satisfied \textbf{both} by phrasal movement to [Spec,$\mathcal{H}$] \textbf{and} by movement of another head $\mathcal{J}$ into $\mathcal{H}$.
+
+\medskip
+In the case of $v$ the conjunctive formulation is evidently the operative one, the requirement for a specifier amounting to argument introduction.  And the argument of \S\ref{whyspecT} shows that it is operative for T in Greek as well --- and, crucially, shows \emph{why}.  The head dependency and the phrasal dependency are not alternative means to one end.  The head dependency (Asp-to-T) is the precondition for the phrasal dependency ([Spec,T]) being interpretable at all, because it is what brings Aspect's restrictor slot to the position where the specifier can discharge it.  That, we contend, is the deepest thing the Greek data show us about the EPP: not that it can be satisfied in two ways, but that in a language of this type it must be satisfied in both, and that the two satisfactions are one operation seen from two sides.
+
+\subsection{Inheritance, and a four-cell typology}\label{typology}
+
+Turn now to the C phase.  Assuming that all operations are driven by phase heads, and that the EPP property of T results from transfer from C \citep{chomsky:08,richards:07}, it is reasonable to suppose that if there are two EPP dependencies they may be transferred independently.  This is a natural generalisation of \citeposs{ouali:08} treatment of C-to-T $\varphi$-transfer, on which C may \textsc{donate}, \textsc{share} or \textsc{keep}, and of \citeposs{miyagawa:10,miyagawa:17} proposal that languages differ in which features C transmits to T.  Where Ouali and Miyagawa parametrise \emph{which features} are inherited, we parametrise \emph{which dependencies}.
+
+Write \Hd{} for the head dependency and \Pd{} for the phrasal dependency.  Each may be donated to T or kept at C.  The four cells are as follows.
+
+\paragraph*{Option 1: C transmits both dependencies to T.} $\langle$\Hd$\to$T, \Pd$\to$T$\rangle$.  Exactly parallel to transitive $v$: head movement into T and phrasal merger in [Spec,T].  This is Greek XP-V, and equally Greek SVO --- the two differing, as \S\ref{thetic} showed, only in which element supplies the restrictor.  It is also, on our account, the general Romance case.
+
+\paragraph*{Option 2: C transmits the head dependency and keeps the phrasal one.} $\langle$\Hd$\to$T, \Pd$@$C$\rangle$.  V-to-T, with the XP moving to [Spec,C].  This is how Greek \emph{wh}-questions are derived, and Greek focus fronting: there is V-to-T, the operator is in the left periphery, and no subject intervenes between the operator and the verb.
+
+\paragraph*{Option 3: C transmits the phrasal dependency and keeps the head one.} $\langle$\Hd$@$C, \Pd$\to$T$\rangle$.  V-to-C, with a phrase in [Spec,T].  This is residual subject--auxiliary inversion: English \emph{Has John left?}, with the auxiliary in C and the subject in [Spec,T]; and its Romance counterparts.
+
+\paragraph*{Option 4: C keeps both.} $\langle$\Hd$@$C, \Pd$@$C$\rangle$.  V-to-C and an XP in [Spec,C], with T's specifier unfilled.  This is Germanic V2.
+
+\medskip
+It will not have escaped the reader that the fourth cell is the construction whose name we went out of our way, in footnote 1, not to apply to Greek.  We think that reticence was right and that the present result explains why.  Greek XP-V and Germanic V2 are not the same construction, but they are the same \emph{parameter setting seen at different heights}: in both, a head dependency and a phrasal dependency are discharged together on a single head, and the difference is only whether that head is C or T.  A theory in which V2 is an umbrella term for several distinct phenomena \citep{holmberg:13,jouitteau:07} is exactly what this predicts, since the cells are individuated by inheritance and not by linear position.
+
+\DEC{\textbf{Option 3 in your original draft was assigned to Greek polar questions with inversion.}  I have reassigned it to English/Romance subject--auxiliary inversion, because Greek polar questions are intonational or use \emph{mipos}, and I am not aware of Greek V-to-C in polar questions.  If you have data showing that Greek does have a V-to-C polar interrogative, put it back and the cell is filled language-internally, which would be much better --- a four-way typology exhibited within a single language is far more persuasive than one assembled across four.  Do you have such data?  If not, I would say explicitly in the text that Greek fills cells 1 and 2 and that 3 and 4 are filled elsewhere; that is honest and still interesting.}
+
+\QST{A fifth possibility exists and I have left it out: \citeposs{ouali:08} \textsc{share}, on which the feature is present on both C and T.  \textsc{share} applied to \Hd{} would give a verb realised in C with a copy in T, and applied to \Pd{} would give specifiers on both --- which is one standard analysis of Germanic V2 with the subject in [Spec,T].  Including it makes the typology nine-celled and considerably harder to police empirically.  Do you want it in?  My instinct is a footnote, not a section.}
+
+\subsection{Formal and contentful phrasal dependencies}\label{formalvscontentful}
+
+One loose end remains, and tying it off reconnects \S\ref{dualdep} to \S\ref{featureorproperty}.
+
+If the phrasal dependency of T is uniformly the introduction of a situation restrictor, then Icelandic Stylistic Fronting is a problem: predicative adjectives and negation are not situation-denoting, and no amount of type-shifting will make them so.  The resolution, we suggest, is that the two views of the EPP set out in \S\ref{featureorproperty} correspond to two ways the phrasal dependency can be discharged:
+
+\ex. \label{formalcontentful}
+\a. \textbf{Contentful \Pd.}  The phrasal dependency is the discharge of an argument slot --- for T, the restrictor of the clausal situation quantifier.  The occupant of [Spec,T] must be semantically appropriate.  This is Greek, and this is the EPP as a property of a feature.
+\b. \textbf{Formal \Pd.}  The phrasal dependency is a bare requirement that a specifier be projected, with no semantic condition on the occupant.  Anything of the right size will do.  This is Icelandic Stylistic Fronting, and this is the EPP as a feature in its own right.
+
+\medskip
+The distinction is not ad hoc: it is precisely the distinction \S\ref{featureorproperty} argued for on independent grounds, and it now has a semantic correlate.  It also makes a prediction --- that formal \Pd{} languages should show no interpretive effect from the choice of filler, while contentful \Pd{} languages should show exactly the thetic/categorical alternation of \S\ref{thetic}.  Holmberg's characterisation of Stylistic Fronting as having no interpretive effect, and as being ``how any category can become an expletive'', is precisely the former.  Greek is precisely the latter.
+
+\subsection{What the EPP is, on this account}
+
+We can now say what we take the EPP on T to be.  It is not a diacritic, not an unexplained residue of the theory of grammatical functions, and not merely a formal edge feature.  It is the requirement that the clause's situation quantifier be given a restrictor, and it stands to T as the requirement that the event have an agent stands to $v$.  Where the requirement is contentful, as in Greek, the range of possible occupants of [Spec,T] is fixed by semantics and not by category, which is why locatives, temporals and subjects can all appear there and why instruments and manner adverbials cannot.  Where it is formal, as in Icelandic, category and size are all that matter.
+
+The intuitions that have driven the descriptive literature on these constructions --- range assignment \citep{borer:05a}, discourse or perspective marking \citep{alexiadou:07,partee-borschev:04}, stage topics \citep{basilico:03,cohen-erteschik-shir:02}, the speaker's coordinates \citep{giorgi:10}, and, in a different tradition, the anchoring function of INFL \citep{ritter-wiltschko:14,wiltschko:14} --- can all be brought under this umbrella.  Whether one prefers to speak of location, of perspective or of anchoring, the point is that in the cases at hand, where subjects do not raise, the EPP must be satisfied by a different element bearing the relevant relation to T.  This is the origin of the anchoring intuition, and it is also the reason the initial XP is not a topic: locative and perspectival information is given \emph{with respect to} the propositional core, [T $v$P], as an argument of the predicate the EPP derives, and not as something the clause is about in the topic--comment sense.
+
+\LIT{\citet{ritter-wiltschko:14} is the reference I most want you to look at, and it is not in your bibliography.  Their claim is that the function of INFL is \emph{anchoring} the reported situation to the utterance situation, and that the substantive content that does the anchoring varies parametrically --- tense in English, \emph{location} in Halkomelem, participant in Blackfoot.  Greek XP-V is, on our account, a language in which the anchoring is done by an overt spatiotemporal XP in exactly one construction type.  That is either a very strong convergence or a threat, depending on how you read them: a Ritter \& Wiltschko-style analysis might say the Greek XP \emph{is} the substantive content of INFL, which would be a competing analysis rather than a friendly one.  We should engage with it explicitly in \S\ref{formalvscontentful} rather than cite it in passing.  \textbf{I have not written that engagement because I want your read on them first.}}
+
+%% =====================================================================
+\section{Predictions, and what would refute the account}\label{predictions}
+%% =====================================================================
+
+An account of this shape is only worth the paper it is written on if it can be wrong.  We therefore set out what it predicts, in a form that makes it clear which observations would sink it.
+
+\subsection{The class of possible initial XPs}\label{classpred}
+
+Since [Spec,T] must be of type \ty{\sit,t}, the class of possible occupants is the class of expressions denoting properties of situations, and no other.  This predicts a sharp cut:
+
+\ex. \label{classlist}
+\a. \textbf{Should be possible:} locatives (\emph{edo}, \emph{sto grafeio}), temporals (\emph{kathe mera}, \emph{stis giortes}), frame adverbials (\emph{stin Ellada}), conditional and temporal adjunct clauses (\emph{otan vrehi} `when it rains'), and --- more surprisingly --- \emph{sti douleia} type XPs on their situational rather than locational construal.
+\b. \textbf{Should be impossible:} instrumentals (\emph{me to stilo} `with the pen'), comitatives (\emph{me ti Maria}), manner adverbials (\emph{prosektika} `carefully'), benefactives.  These modify the eventuality, not the situation, and cannot restrict a quantifier over situations.
+
+\DAT{\textbf{The cleanest single test of the whole semantic account.}  All of the following are imperfective clauses with a postverbal subject, differing only in the category of the initial XP:
+
+\medskip
+\hspace*{2em}(a) \emph{Otan vrehi meletai i Maria.} \quad `When it rains studies Maria' \quad --- I predict \textbf{good}.\\
+\hspace*{2em}(b) \emph{Stin Ellada ftiaxnun kalo tiri.} \quad --- I predict \textbf{good} (cf.\ \ref{spyropoulos2}).\\
+\hspace*{2em}(c) \emph{Me to stilo grafi grammata i Maria.} \quad `with the pen writes letters Maria' --- I predict \textbf{bad} on the wide-focus reading.\\
+\hspace*{2em}(d) \emph{Prosektika odigai i Maria.} \quad `carefully drives Maria' --- I predict \textbf{bad} on the wide-focus reading.\\
+\hspace*{2em}(e) \emph{Me ti Maria meletai o Yiannis.} \quad --- I predict \textbf{bad} on the wide-focus reading.
+
+\medskip
+If (a) and (b) are good and (c)--(e) are bad, we have a strong, category-independent, semantically-defined class, and the ``umbrella term XP'' of footnote 2 turns out not to be an evasion but a result.  If (c)--(e) are \emph{good}, the type-based restriction is wrong and we would have to fall back on a purely formal EPP for Greek too --- which would cost us \S\ref{thetic} and most of \S\ref{semantics}.  \textbf{This is the test I would run first if I could only run one besides \S\ref{prog}.}}
+
+\subsection{Diesing effects on postverbal subjects}
+
+If the vP is the nuclear scope and [Spec,T] the restrictor, then indefinite subjects should show the familiar existential/generic ambiguity by position \citep{diesing:92}: postverbal indefinites existential, preverbal indefinites generic or specific.
+
+\ex. \label{diesingpred}
+\a. \emph{Edo meletun fitites.} \quad --- postverbal bare plural: existential (`there are students studying here').
+\b. \emph{Fitites meletun edo.} \quad --- preverbal bare plural: generic/kind (`students, in general, study here'), and \emph{not} available as a mere existential.
+
+\medskip
+This is a prediction the account cannot avoid making, and it is one that would be unexpected on any analysis treating the initial XP as a topic.
+
+\subsection{Definiteness effects on the perfective XP}
+
+\ref{pfvpred} predicts that with the perfective, the acceptability of an initial XP tracks unique identifiability of a situation.  We repeat it here because it is the prediction most directly at odds with the received description, which treats the perfective as simply incompatible with an initial XP.
+
+\subsection{The V-to-T correlation}
+
+\ref{v2tpred} predicts that no language without syntactic V-to-T has Greek-type XP-V.  A single well-attested counterexample --- a null-subject language with post-syntactic verb--T relations and an obligatory situational XP in [Spec,T] --- would refute it.
+
+\subsection{Residual problems}\label{residualprobs}
+
+We list three, because they are real and because we would rather name them than be told them.
+
+\medskip\noindent\textbf{The concessive \emph{edo}.}  \emph{edo pethenei i dimokratia kai theloun dimopsifisma} `Democracy is dying and they want a referendum' uses initial \emph{edo} with a concessive, discourse-connective force which is plainly not locative.  We set this aside in \S\ref{pfvfacts} as a separate use.  That may be too quick.  If concessive \emph{edo} occupies the same position, it is a counterexample to \ref{classlist}; if it does not, we owe an account of where it is.
+
+\QST{My suspicion is that concessive \emph{edo} is a discourse particle in the C-domain and has nothing to do with [Spec,T], and that the diagnostic is whether it can co-occur with a genuine situational XP: \emph{Edo stis giortes ftiaxnei kulurakia i Maria} on the concessive reading of the first \emph{edo}.  If that is possible, the two positions are distinct and the problem dissolves.  Worth checking, and it is the same test as (i) in the QUESTION box of \S\ref{nottopic}.}
+
+\medskip\noindent\textbf{Subjunctive and \emph{na}-clauses.}  We have said nothing about the behaviour of XP-V in \emph{na}-clauses, which given the well-known peculiarities of the Greek subjunctive \citep{giannakidou:09,roberts-roussou:03} is a gap.  If \emph{na}-clauses are deficient in the relevant aspectual or C-domain respects, they should behave differently, and that would be evidence.
+
+\DAT{\emph{Thelo na meletai edo i Maria} versus \emph{Thelo na edo meletai i Maria} versus \emph{Thelo edo na meletai i Maria}.  Where does the XP go in a \emph{na}-clause, and is it still obligatory?  Given your work on the Greek complementiser system this is probably a paragraph you can write faster than I can ask for it, and it would close a gap a referee will certainly notice.}
+
+\medskip\noindent\textbf{Negation.}  We have not tested the interaction with negation.  Since \emph{dhen} intervenes between T and AspP on most analyses of Greek clause structure, and since negation is itself a quantificational element, the interaction is not likely to be trivial.
+
+%% =====================================================================
+\section{Conclusion}\label{concl}
+%% =====================================================================
+
+We have investigated a class of Greek clauses in which a clause-initial non-subject XP is obligatory, and whose absence produces ungrammaticality --- an unexpected state of affairs in a consistent null-subject language.  We have shown that the class is considerably wider than has been claimed: it is not restricted to unaccusatives, it takes in transitives and object-experiencers, and it occurs in embedded as well as root clauses.
+
+We have argued that the initial XP is externally merged in [Spec,T], and that it is there because [Spec,T] is the restrictor of the clausal quantifier over situations.  The aspectual conditioning follows from a difference of arity: perfective aspect is monadic and its situation argument may be discharged by a covert, deictically anchored situation pronoun, while generic-habitual imperfective aspect is dyadic and its restrictor argument cannot be a singleton, so that a covert pronoun will not serve.  The complementary distribution of the XP with a preverbal subject follows from their competing for a single position and a single semantic role, and the associated thetic/categorical contrast follows from which of them wins.  The residue of perfective clauses that nonetheless require an XP --- which has been treated as a lexical irregularity, if it has been treated at all --- follows from the conditions on identifying the covert situation pronoun, and is therefore not a counterexample but a confirmation.
+
+On the theoretical side, this yields a conception of the EPP as neither a diacritic nor a purely formal edge requirement, but as an argument-introducing property strictly parallel to that of $v$: T introduces the situation restrictor as $v$ introduces the external argument.  It also yields a reason why the EPP in Greek is satisfied by \emph{both} head movement and phrasal merger rather than either: head movement of Asp into T is what makes [Spec,T] the position where Aspect's restrictor argument can be discharged, so that the two dependencies are one operation seen from two sides.  Generalising the dual dependency to the C--T region, and letting C inherit each dependency independently, gives a four-cell typology whose cells are Greek XP-V, Greek \emph{wh}-questions, residual subject--auxiliary inversion and Germanic V2.  And it gives a sharp comparative prediction: Greek-type XP-V requires syntactic V-to-T movement, which is why English does not have it.
+
+What we have not done is settle whether the imperfective's extra semantic argument has an independent syntactic reflex --- whether, that is, there is a $\varphi$-probe on aspect trapping the subject in the way the split-ergativity literature would suggest.  Our own view is that the semantics does the work and that the probe should be retained, if at all, only for the pronoun facts.  But the question is decidable, and \S\ref{compdist} says how.
+
+\LIT{\textbf{Front and back matter for \emph{Glossa}.}  Before submission we need: (i) an acknowledgements paragraph; (ii) a Competing Interests statement (``The authors have no competing interests to declare''); (iii) an Ethics/Data Availability statement --- \emph{Glossa} now expects one, and for a judgement-based paper the right form says that the judgements are the authors' own and those of the consultants named in the acknowledgements; (iv) ORCID iDs for both authors; (v) abbreviations list for the glosses.  \emph{Glossa} also asks for Leipzig-conformant glossing, which I have partially implemented --- see the DECISION box in the appendix.}
+
+%% =====================================================================
+\appendix
+\section{A worked derivation}\label{appendix}
+%% =====================================================================
+
+For concreteness we give the composition of \emph{Se afto to grafeio meletai i Maria} `In this office studies Maria' step by step.  Types are given at each line.
+
+\ex. \label{worked}
+\a. \dbr{\mathrm{V}} $= \lambda e.\ \mathit{study}(e)$ \hfill \ty{\sit,t}
+\b. \dbr{v} $= \lambda x\, \lambda e.\ \mathrm{Ag}(e) = x$ \hfill \ty{e,\ty{\sit,t}}
+\b. \dbr{v'} $= \lambda x\, \lambda e.\ \mathit{study}(e) \wedge \mathrm{Ag}(e) = x$ \hfill \ty{e,\ty{\sit,t}}\\
+\hspace*{2em}(by Event Identification, \citealt{kratzer:96})
+\b. \dbr{v\mathrm{P}} $= \lambda e.\ \mathit{study}(e) \wedge \mathrm{Ag}(e) = \mathbf{m}$ \hfill \ty{\sit,t}
+\b. \dbr{\mathrm{Asp}_{\textsc{ipfv-gen}}} $= \lambda P\, \lambda R\, \lambda s.\ \textsc{gen}\ e\,[\,e\leq s \wedge R(e)\,]\,[\,\exists e'(e'\leq e \wedge P(e'))\,]$
+\b. \dbr{\mathrm{AspP}} $= \lambda R\, \lambda s.\ \textsc{gen}\ e\,[\,e\leq s \wedge R(e)\,]\,[\,\exists e'(e'\leq e \wedge \mathit{study}(e') \wedge \mathrm{Ag}(e')=\mathbf{m})\,]$ \hfill \ty{\ty{\sit,t},\ty{\sit,t}}
+\b. Asp raises to T.  By \ref{whyspecTstate}, the unsaturated $R$ is now discharged at [Spec,T].
+\b. \dbr{\text{se afto to grafeio}} $= \lambda e.\ \ell(e) \subseteq \iota x.\ \mathit{office}(x) \wedge \mathit{prox}(x)$ \hfill \ty{\sit,t}
+\b. \dbr{\mathrm{TP}} $= \lambda s.\ \textsc{gen}\ e\,[\,e\leq s \wedge \ell(e) \subseteq \iota x.\mathit{office}(x)\wedge\mathit{prox}(x)\,]\,[\,\exists e'(e'\leq e \wedge \mathit{study}(e')\wedge\mathrm{Ag}(e')=\mathbf{m})\,]$ \hfill \ty{\sit,t}
+\b. Tense: the topic situation $s$ is anchored by T's temporal feature; for the present tense, $\tau(s) \ni t_{0}$.
+\b. The clause is true iff the topic situation is one whose office-located parts are, in general, parts of which a studying by Maria is a part.
+
+\medskip
+The corresponding failed derivation, \#\emph{meletai i Maria} on the generic construal, breaks at step \ref{worked}g--h: the only available occupant of [Spec,T] is \prs, which by \ref{identshift} denotes $\lambda e.\ e = \prs$, a singleton, and \textsc{gen} restricted to a singleton violates \ref{nontriv}.  There is no repair within the generic parse; what the speaker reports as ``only with verum focus'' is the progressive parse, on which Asp is \ref{progdenot} and monadic, and \prs{} saturates rather than restricts.
+
+\DEC{\textbf{Glossing and transliteration.}  Two housekeeping decisions I have deliberately not taken for you.
+(i) I have regularised the \emph{glosses} to Leipzig conventions (small caps for grammatical categories, dots for portmanteaux, hyphens for segmentable morphemes), which \emph{Glossa} requires and which the old draft did not follow.  I have \textbf{not} regularised the \emph{transliteration}: it is inconsistent in the source (\emph{pada}$\sim$\emph{panda}, \emph{katejides}, \emph{paretisi}$\sim$\emph{paraitisi}, \emph{safto}$\sim$\emph{se afto}), and correcting it is your data, not mine to guess at.  Either fix it or decide to use Greek script with a transliteration line --- \emph{Glossa} permits both, and for a Greek-language paper the three-line format (Greek script / transliteration+gloss / translation) reads better and would remove the inconsistency at a stroke.
+(ii) Some glosses in the source conflate tense and aspect (\emph{is-studying.3sg.impf}).  I have separated them where I could tell which was which, but there are places --- \emph{eftiaxne}, \emph{evgaze} --- where I have guessed at the tense.  Please check every gloss line; it is the one part of this draft I cannot verify.}
+
+\bibliographystyle{chicago}
+\bibliography{fbib-evi,xpv-extra}
+
+\end{document}
